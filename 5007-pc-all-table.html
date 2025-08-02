@@ -133,6 +133,9 @@
       <div class="table-responsive">
         <table class="wb-tables table table-striped table-condensed table-hover small" id="year-filter" 
             data-wb-urlmapping='{
+                "back": { "action": "tblfilter", "column": 3, "value": "Backgrounders" },
+                "dep=inf": { "action": "tblfilter", "column": 2, "value": "Infrastructure Canada" },
+                "date=jul26": { "action": "tblfilter", "column": 1, "value": "2016-07-26" },
                 "year": {
                     "action": "tblfilter",
                     "source": "#year-filter",
@@ -141,7 +144,7 @@
                     "match": "^[1-2][0-9][0-9][0-9]$",
                     "default": ""
                 }
-            }' aria-live="polite" data-page-length='50' data-wb-tables='{ "ordering": true }'>
+            }' aria-live="polite" data-page-length='50' data-wb-tables='{ "ordering": false }'>
           <caption class="wb-inv">
           Available prior year versions
           </caption>
