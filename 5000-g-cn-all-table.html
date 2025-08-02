@@ -126,28 +126,20 @@
       <div class="table-responsive">
         <table class="wb-tables table table-striped table-condensed table-hover small" id="year-filter" 
             data-wb-urlmapping='{
-                "back": { "action": "tblfilter", "column": 3, "value": "Backgrounders" },
-                "dep=inf": { "action": "tblfilter", "column": 2, "value": "Infrastructure Canada" },
-                "date=jul26": { "action": "tblfilter", "column": 1, "value": "2016-07-26" },
                 "year": {
                     "action": "tblfilter",
                     "source": "#year-filter",
                     "column": 0,
                     "value": "{qval}",
                     "match": "^[1-2][0-9][0-9][0-9]$",
-                    "default": "2024"
+                    "default": ""
                 }
-            }' aria-live="polite" data-page-length='50' data-wb-tables='{ "ordering": false }'>
+            }' aria-live="polite" data-page-length='50' data-wb-tables='{ "ordering": true }'>
           <caption class="wb-inv">
           Available prior year versions
           </caption>
           <thead>
             <tr> 
-              <!--<th>Year</th>
-              <th>HTML guide</th>
-              <th>Standard PDF</th>
-              <th>Large print PDF</th>
-              <th>E-text</th>-->
               <th class="col-md-1">Year</th>
               <th class="col-md-5">HTML guide</th>
               <th class="col-md-2">Standard PDF</th>
