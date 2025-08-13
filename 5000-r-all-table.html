@@ -134,23 +134,37 @@
       <h2 id="prvs-yrs">Previous versions</h2>
       <p>This publication is also available in select formats for the prior years listed in the table below.</p>
       <div class="table-responsive">
-        <table class="wb-tables table table-striped table-condensed table-hover small" id="year-filter" 
+        <table class="wb-tables table table-striped table-condensed table-hover small" id="year-prov-filter" 
             data-wb-urlmapping='{
                 "year": {
                     "action": "tblfilter",
-                    "source": "#year-filter",
+                    "source": "#year-prov-filter",
                     "column": 0,
                     "value": "{qval}",
                     "match": "^[1-2][0-9][0-9][0-9]$",
-                    "default": "2023"
-                }
-            }' aria-live="polite" data-page-length='50' data-wb-tables='{ "ordering": false }'>
+                },
+                "prov=BC": { "action": "tblfilter", "column": 1, "value": "British Columbia" },
+                "prov=AB": { "action": "tblfilter", "column": 1, "value": "Alberta" },
+                "prov=SK": { "action": "tblfilter", "column": 1, "value": "Saskatchewan" },
+                "prov=MB": { "action": "tblfilter", "column": 1, "value": "Manitoba" },
+                "prov=ON": { "action": "tblfilter", "column": 1, "value": "Ontario" },
+                "prov=QC": { "action": "tblfilter", "column": 1, "value": "Quebec" },
+                "prov=NB": { "action": "tblfilter", "column": 1, "value": "New Brunswick" },
+                "prov=NS": { "action": "tblfilter", "column": 1, "value": "Nova Scotia" },
+                "prov=PE": { "action": "tblfilter", "column": 1, "value": "Prince Edward Island" },
+                "prov=NL": { "action": "tblfilter", "column": 1, "value": "Newfoundland and Labrador" },
+                "prov=YT": { "action": "tblfilter", "column": 1, "value": "Yukon" },
+                "prov=NT": { "action": "tblfilter", "column": 1, "value": "Northwest Territories" },
+                "prov=NU": { "action": "tblfilter", "column": 1, "value": "Nunavut" }
+                "prov=NR": { "action": "tblfilter", "column": 1, "value": "Non-resident" }
+                }' aria-live="polite" data-page-length='50' data-wb-tables='{ "ordering": false }'>
           <caption class="wb-inv">
           Available prior year versions
           </caption>
           <thead>
             <tr>
               <th>Year</th>
+              <th>Provinces</th>
               <th>Fillable PDF</th>
               <th>Standard PDF</th>
               <th>Large print PDF</th>
@@ -160,6 +174,7 @@
           <tbody>
             <tr>
               <th>2022</th>
+              <td>Ontario</td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-fill-22e.pdf">5000-r-fill-22e.pdf</a> (XX&nbsp;KB)</td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-22e.pdf">5000-r-22e.pdf</a> (XX&nbsp;KB)</td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-lp-22e.pdf">5000-r-lp-22e.pdf</a> (XX&nbsp;KB)</td>
@@ -167,6 +182,7 @@
             </tr>
             <tr>
               <th>2021</th>
+              <td>Saskatchewan, British Columbia</td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-fill-21e.pdf">5000-r-fill-21e.pdf</a> (XX&nbsp;KB)</td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-21e.pdf">&nbsp;5000-r-21e.pdf</a> (XX&nbsp;KB)</td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-lp-21e.pdf">5000-r-lp-21e.pdf</a> (XX&nbsp;KB)</td>
@@ -174,6 +190,7 @@
             </tr>
             <tr>
               <th>2020</th>
+              <td>British Columbia</td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-fill-20e.pdf">5000-r-fill-20e.pdf</a> (XX&nbsp;KB)</td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-20e.pdf">5000-r-20e.pdf</a> (XX&nbsp;KB)</td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-lp-20e.pdf">5000-r-lp-20e.pdf</a> (XX&nbsp;KB)</td>
@@ -181,6 +198,7 @@
             </tr>
             <tr>
               <th>2019</th>
+              <td>Ontario, British Columbia</td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-fill-19e.pdf">5000-r-fill-19e.pdf</a> (XX&nbsp;KB)</td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-19e.pdf">5000-r-19e.pdf</a> (XX&nbsp;KB)</td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-lp-19e.pdf">5000-r-lp-19e.pdf</a> (XX&nbsp;KB)</td>
@@ -188,6 +206,7 @@
             </tr>
             <tr>
               <th>2018</th>
+              <td>Ontario</td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-fill-18e.pdf">5000-r-fill-18e.pdf</a> (XX&nbsp;KB)</td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-18e.pdf">5000-r-18e.pdf</a> (XX&nbsp;KB)</td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-lp-18e.pdf">5000-r-lp-18e.pdf</a> (XX&nbsp;KB)</td>
@@ -195,6 +214,7 @@
             </tr>
             <tr>
               <th>2017</th>
+              <td>Saskatchewan</td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-fill-17e.pdf">5000-r-fill-17e.pdf</a> (XX&nbsp;KB)</td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-17e.pdf">5000-r-17e.pdf</a> (XX&nbsp;KB)</td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-lp-17e.pdf">5000-r-lp-17e.pdf</a> (XX&nbsp;KB)</td>
@@ -202,6 +222,7 @@
             </tr>
             <tr>
               <th>2016</th>
+              <td>Saskatchewan, New Brunswick</td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-fill-16e.pdf">5000-r-fill-16e.pdf</a> (XX&nbsp;KB)</td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-16e.pdf">5000-r-16e.pdf</a> (XX&nbsp;KB)</td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-lp-16e.pdf">5000-r-lp-16e.pdf</a> (XX&nbsp;KB)</td>
@@ -209,6 +230,7 @@
             </tr>
             <tr>
               <th>2014</th>
+              <td>British Columbia</td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-fill-14e.pdf">5000-r-fill-14e.pdf</a> (XX&nbsp;KB)</td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-14e.pdf">5000-r-14e.pdf</a> (XX&nbsp;KB)</td>
               <td><span class="small text-muted">Not available</span></td>
@@ -216,6 +238,7 @@
             </tr>
             <tr>
               <th>2013</th>
+              <td>Saskatchewan, New Brunswick</td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-fill-13e.pdf">5000-r-fill-13e.pdf</a> (XX&nbsp;KB)</td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-13e.pdf">5000-r-13e.pdf</a> (XX&nbsp;KB)</td>
               <td><span class="small text-muted">Not available</span></td>
@@ -223,6 +246,7 @@
             </tr>
             <tr>
               <th>2012</th>
+              <td>British Columbia</td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-fill-s-12e.pdf">5000-r-fill-s-12e.pdf</a> (XX&nbsp;KB)</td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-12e.pdf">5000-r-12e.pdf</a> (XX&nbsp;KB)</td>
               <td><span class="small text-muted">Not available</span></td>
@@ -230,6 +254,7 @@
             </tr>
             <tr>
               <th>2011</th>
+              <td>Saskatchewan, New Brunswick</td>
               <td><span class="small text-muted">Not available</span></td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-11e.pdf">5000-r-11e.pdf</a> (XX&nbsp;KB)</td>
               <td><span class="small text-muted">Not available</span></td>
@@ -237,6 +262,7 @@
             </tr>
             <tr>
               <th>2010</th>
+              <td>Saskatchewan, New Brunswick</td>
               <td><span class="small text-muted">Not available</span></td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-10e.pdf">5000-r-10e.pdf</a> (XX&nbsp;KB)</td>
               <td><span class="small text-muted">Not available</span></td>
@@ -244,6 +270,7 @@
             </tr>
             <tr>
               <th>2009</th>
+              <td>British Columbia</td>
               <td><span class="small text-muted">Not available</span></td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-09e.pdf">5000-r-09e.pdf</a> (XX&nbsp;KB)</td>
               <td><span class="small text-muted">Not available</span></td>
@@ -251,6 +278,7 @@
             </tr>
             <tr>
               <th>2008</th>
+              <td>Saskatchewan, New Brunswick</td>
               <td><span class="small text-muted">Not available</span></td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-08e.pdf">5000-r-08e.pdf</a> (XX&nbsp;KB)</td>
               <td><span class="small text-muted">Not available</span></td>
@@ -258,6 +286,7 @@
             </tr>
             <tr>
               <th>2007</th>
+              <td>Saskatchewan, New Brunswick</td>
               <td><span class="small text-muted">Not available</span></td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-07e.pdf">5000-r-07e.pdf</a> (XX&nbsp;KB)</td>
               <td><span class="small text-muted">Not available</span></td>
@@ -265,6 +294,7 @@
             </tr>
             <tr>
               <th>2006</th>
+              <td>British Columbia</td>
               <td><span class="small text-muted">Not available</span></td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-06e.pdf">5000-r-06e.pdf</a> (XX&nbsp;KB)</td>
               <td><span class="small text-muted">Not available</span></td>
@@ -272,6 +302,7 @@
             </tr>
             <tr>
               <th>2005</th>
+              <td>British Columbia</td>
               <td><span class="small text-muted">Not available</span></td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-05e.pdf">5000-r-05e.pdf</a> (XX&nbsp;KB)</td>
               <td><span class="small text-muted">Not available</span></td>
@@ -279,6 +310,7 @@
             </tr>
             <tr>
               <th>2004</th>
+              <td>Saskatchewan, New Brunswick</td>
               <td><span class="small text-muted">Not available</span></td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-04e.pdf">5000-r-04e.pdf</a> (XX&nbsp;KB)</td>
               <td><span class="small text-muted">Not available</span></td>
@@ -286,6 +318,7 @@
             </tr>
             <tr>
               <th>2003</th>
+              <td>Ontario</td>
               <td><span class="small text-muted">Not available</span></td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-03e.pdf">5000-r-03e.pdf</a> (XX&nbsp;KB)</td>
               <td><span class="small text-muted">Not available</span></td>
@@ -293,6 +326,7 @@
             </tr>
             <tr>
               <th>2002</th>
+              <td>Ontario</td>
               <td><span class="small text-muted">Not available</span></td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-02e.pdf">5000-r-02e.pdf</a> (XX&nbsp;KB)</td>
               <td><span class="small text-muted">Not available</span></td>
@@ -300,6 +334,7 @@
             </tr>
             <tr>
               <th>2001</th>
+              <td>British Columbia</td>
               <td><span class="small text-muted">Not available</span></td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-01e.pdf">5000-r-01e.pdf</a> (XX&nbsp;KB)</td>
               <td><span class="small text-muted">Not available</span></td>
@@ -307,6 +342,7 @@
             </tr>
             <tr>
               <th>2000</th>
+              <td>Ontario</td>
               <td><span class="small text-muted">Not available</span></td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-00e.pdf">5000-r-00e.pdf</a> (XX&nbsp;KB)</td>
               <td><span class="small text-muted">Not available</span></td>
@@ -314,6 +350,7 @@
             </tr>
             <tr>
               <th>1999</th>
+              <td>Ontario</td>
               <td><span class="small text-muted">Not available</span></td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-99e.pdf">5000-r-99e.pdf</a> (29&nbsp;KB)</td>
               <td><span class="small text-muted">Not available</span></td>
@@ -321,6 +358,7 @@
             </tr>
             <tr>
               <th>1998</th>
+              <td>Ontario</td>
               <td><span class="small text-muted">Not available</span></td>
               <td><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-98e.pdf">5000-r-98e.pdf</a> (59&nbsp;KB)</td>
               <td><span class="small text-muted">Not available</span></td>
