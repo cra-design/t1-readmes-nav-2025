@@ -1,0 +1,81 @@
+Task: Write a PowerShell script to compare bilingual HTML tables for a list of forms and enforce link parity between English and French versions.
+
+Inputs & locations
+
+A text file: recent-T1-forms-10yrs-bil.txt (each line is a form name like 5000-s2).
+
+For each $formname, there are two HTML files in the .\results subfolder:
+
+English: .\results\$formname-table-e.htm
+
+French: .\results\$formname-table-f.htm
+
+Table structure & matching
+
+Each file contains one HTML table with the same structure:
+
+Column 0 = Year.
+
+Columns 1..N correspond to resource types and are in the same order across both languages.
+
+Align rows by the Year value (string match), not by row order.
+
+For each aligned (year, column) cell, compare the presence of a link.
+
+Rule to enforce (link parity)
+
+If exactly one language’s cell contains an <a … href="…"> link (non‑empty href) and the other language’s cell is “not available”, then remove the link and replace the linked cell’s content with the “not available” markup so both sides match as unavailable.
+
+Do not add links. Only remove a link when its counterpart is unavailable.
+
+Consider a cell “has link” iff it contains an <a> tag with a non‑empty href. Otherwise it counts as “no link”.
+
+Exact “not available” markup to use
+
+For English cells (in *-e.htm):
+
+<td><span class="small text-muted">Not available</span></td>
+
+
+For French cells (in *-f.htm):
+
+<td><span class="small text-muted">Pas disponible</span></td>
+
+
+Editing behavior
+
+Modify files in place in .\results.
+
+Before modifying, create a timestamped backup next to each file (e.g., *-e.htm.bak-YYYYMMDD-HHMMSS and *-f.htm.bak-YYYYMMDD-HHMMSS).
+
+Preserve all other HTML, attributes, whitespace, and formatting. Only replace the inner HTML of the affected <td> cell with the exact markup above.
+
+Edge cases
+
+If a Year exists in one language file but not the other, skip that row and record a warning (no row insertions or deletions).
+
+If both cells have links or both are already “not available,” make no change.
+
+Treat empty <a> tags or whitespace as “no link.”
+
+If multiple tables are present, operate on the first data table (<tbody> rows) and ignore others.
+
+Output/reporting
+
+Print a concise report to the console for each change:
+
+$formname, Year, Column index (or column header text if easily available), which language was changed (en or fr), and the original href that was removed.
+
+After processing, print a summary count of changed cells and skipped/warned rows.
+
+Performance & robustness
+
+Fail gracefully per file pair; continue processing other form names even if one pair has an error.
+
+Use robust HTML parsing (e.g., AngleSharp via .NET if available) or careful regex with safeguards.
+
+Script should run from the project root where recent-T1-forms-10yrs-bil.txt is located, with tables in the .\results subfolder.
+
+Deliverables
+
+A single .ps1 script implementing all of the above. No external dependencies required beyond standard Windows PowerShell/.NET.
