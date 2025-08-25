@@ -87,18 +87,30 @@
       <main property="mainContentOfPage" resource="#wb-main" typeof="WebPageElement" class="container">
         <h1 property="name" id="wb-cont" dir="ltr"> 5000-S2 Schedule 2 - Federal Amounts Transferred from your
           Spouse or Common-Law Partner (for all except QC and non-residents)</h1>
+          <script id="yr-data" type="application/json">
+            { "year": "2024" }
+          </script>
+          <div data-wb-urlmapping='{
+              "year": {
+                "action": "patch",
+                "source": "#url-year",
+                "match": "^(201[4-9]|202[0-3])$",
+                "default": "2024",
+                "patches": [
+                  { "op": "replace", "path": "/year", "value": "{qval}" }
+                ]
+              }
+            }'></div>
         <p class="pull-left small"><strong>You may be looking for:</strong></p>
         <ul class="pull-left mrgn-lft-md list-unstyled small">
         <li><a href="manitoba.html">
-          <mark><span id="url-year" data-wb-urlmapping='{
-            "year": {
-              "action": "patch",
-              "source": "#url-year",
-              "value": "{qval}",
-              "match": "^[1-2][0-9][0-9][0-9]$",
-              "default": "2024"
-            }
-      }'>2024</span></mark>
+            <mark>
+              <span id="url-year"
+                    data-wb-jsonmanager='{"url": "#yr-data"}'
+                    data-json-replace="#{year}">
+                2024
+              </span>
+            </mark>
           Income tax package</a></li>
         </ul>
         <div class="clearfix">&nbsp;</div>
