@@ -90,22 +90,24 @@
         <h1 property="name" id="wb-cont" dir="ltr"> 5000-S2 Schedule 2 - Federal Amounts Transferred from your
           Spouse or Common-Law Partner (for all except QC and non-residents)</h1>
         <p class="pull-left small"><strong>You may be looking for:</strong></p>
-        <!-- 1) Seed dataset with default -->
-        <script id="yr-data" type="application/json">
-        { "year": "2024" }
-        </script>
+<!-- 1) Seed dataset: default -->
+<script id="yr-data" type="application/json">
+{ "year": "2024" }
+</script>
 
-        <!-- 2) JSON manager: hidden so it doesn't print anything visible -->
-        <div id="yr-json" class="wb-inv" aria-hidden="true" data-wb-jsonmanager='{
-       "url": "#yr-data",
-       "name": "yr"
-     }'></div>
-        <!-- 4) URL mapping: PATCH the dataset (the JSON manager element), not the span -->
-        <div data-wb-urlmapping='{
+<!-- 2) JSON manager: waits for patches -->
+<div id="yr-json" class="wb-inv" aria-hidden="true" data-wb-jsonmanager='{
+  "url": "#yr-data",
+  "name": "yr",
+  "wait": true
+}'></div>
+
+<!-- 3) URL mapping: PATCH the dataset (the JSON manager element) -->
+<div data-wb-urlmapping='{
   "year": {
     "action": "patch",
     "source": "#yr-json",
-    "match": "^(201[4-9]|202[0-3])$",
+    "match": "^(201[4-9]|202[0-4])$",
     "default": "2024",
     "patches": [
       { "op": "replace", "path": "/year", "value": "{qval}" }
@@ -113,21 +115,20 @@
   }
 }'></div>
 
-        <!-- 3) Where the year is displayed: bind to the dataset NAME
- (no seed text to avoid duplication) -->
-        <ul class="pull-left mrgn-lft-md list-unstyled small">
-          <li>
-            <a href="manitoba.html">
-              <span data-json-replace="#[yr]/year"></span> Income tax package
-            </a>
-          </li>
-        </ul>
-        
+<!-- 4) Display: bind to the dataset NAME; no seed/fallback text -->
+<ul class="pull-left mrgn-lft-md list-unstyled small">
+  <li>
+    <a href="manitoba.html">
+      <span data-json-replace="#[yr]/year"></span> Income tax package
+    </a>
+  </li>
+</ul>
+        <div class="clearfix">&nbsp;</div>
+
 <div data-wb-urlmapping='{ "city" : { "action": "patch", "source": "#example1", "base": "/year", "match": "^(201[4-9]|202[0-3])$", "default": "2024" } }'></div>
 
 <p id="example1" data-wb-jsonmanager='{ "url": "data-en.json", "name": "example1", "wait": true }'>The city selected is: <span data-json-replace="#[example1]/year">somewhere</span></p>
 
-        <div class="clearfix">&nbsp;</div>
         <!--PDF instructions-->
         <section id="instructions" class="mfp-hide modal-dialog modal-content overlay-def">
           <header class="modal-header">
