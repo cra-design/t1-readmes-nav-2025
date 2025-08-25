@@ -122,6 +122,11 @@
             </a>
           </li>
         </ul>
+        
+<div data-wb-urlmapping='{ "city" : { "action": "patch", "source": "#example1", "base": "/year", "match": "^(201[4-9]|202[0-3])$", "default": "2024" } }'></div>
+
+<p id="example1" data-wb-jsonmanager='{ "url": "data-en.json", "name": "example1", "wait": true }'>The city selected is: <span data-json-replace="#[example1]/year">somewhere</span></p>
+
         <div class="clearfix">&nbsp;</div>
         <!--PDF instructions-->
         <section id="instructions" class="mfp-hide modal-dialog modal-content overlay-def">
