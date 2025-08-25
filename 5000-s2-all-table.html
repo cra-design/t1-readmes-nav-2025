@@ -98,82 +98,8 @@
         <!-- 2) JSON manager: hidden so it doesn't print anything visible -->
         <div id="yr-json" class="wb-inv" aria-hidden="true" data-wb-jsonmanager='{
        "url": "#yr-data",
-       "name": "yr",
-       "wait": true
+       "name": "yr"
      }'></div>
-<script>
-(function () {
-  // Helper: log a DOM node’s text and child nodes
-  function logNode(label, el) {
-    if (!el) {
-      console.warn(label + ": element not found");
-      return;
-    }
-    var nodes = Array.prototype.map.call(el.childNodes, function (n) {
-      return {
-        nodeType: n.nodeType,              // 3 = Text
-        nodeName: n.nodeName,              // #text
-        value: (n.nodeType === 3 ? n.nodeValue : n.outerHTML)
-      };
-    });
-    console.log(label + " textContent:", el.textContent);
-    console.log(label + " childNodes:", nodes);
-  }
-
-  // 1) When WET is globally ready
-  document.addEventListener("wb-ready.wb", function () {
-    var span = document.querySelector('[data-json-replace="#[yr]/year"]');
-    var yrScript = document.getElementById("yr-data");
-    var yrJsonEl = document.getElementById("yr-json");
-
-    // Log initial yr-data (seed)
-    try {
-      var seed = yrScript ? JSON.parse(yrScript.textContent) : null;
-      console.log("Seed yr-data from <script id='yr-data'>:", seed);
-    } catch (e) {
-      console.warn("Could not parse seed yr-data:", e);
-    }
-
-    // Log the span as soon as WET is ready (may be pre-patch state)
-    logNode("SPAN (wb-ready.wb, pre/early)", span);
-
-    // Observe the span for any changes (e.g., if it gets updated again later)
-    if (span) {
-      var mo = new MutationObserver(function (mutations) {
-        console.log("MutationObserver: span changed");
-        logNode("SPAN (after mutation)", span);
-      });
-      mo.observe(span, { childList: true, characterData: true, subtree: true });
-    }
-
-    // Also log the parent <a> node (some plugins render siblings)
-    var parentA = span ? span.closest("a") : null;
-    logNode("A (container, initial)", parentA);
-  });
-
-  // 2) When URL mapping is ready (patches should be applied)
-  document.addEventListener("wb-ready.wb-urlmapping", function () {
-    console.log("wb-ready.wb-urlmapping: URL mapping initialized");
-    var span = document.querySelector('[data-json-replace="#[yr]/year"]');
-    logNode("SPAN (wb-ready.wb-urlmapping)", span);
-
-    // Give the JSON replace a tick to render after patches
-    setTimeout(function () {
-      logNode("SPAN (+50ms after urlmapping)", span);
-    }, 50);
-  });
-
-  // 3) On full load, do one last dump
-  window.addEventListener("load", function () {
-    var span = document.querySelector('[data-json-replace="#[yr]/year"]');
-    var a = span ? span.closest("a") : null;
-    logNode("SPAN (window.load final)", span);
-    logNode("A (window.load final)", a);
-    console.log("Location.search:", location.search);
-  });
-})();
-</script>
-
         <!-- 4) URL mapping: PATCH the dataset (the JSON manager element), not the span -->
         <div data-wb-urlmapping='{
   "year": {
