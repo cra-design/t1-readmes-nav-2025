@@ -102,20 +102,14 @@
        "wait": true
      }'></div>
 <script>
-$(document).on("wb-ready.wb-jsonmanager", "#yr-json", function (event, data) {
-  console.log("yr-json dataset (wb-ready):", data);
-
-  // Extra: log just the year property
-  try {
-    console.log("yr-json year value:", data.year);
-  } catch(e) {
-    console.warn("Could not extract year value:", e);
+document.addEventListener("wb-ready.wb-jsonmanager", function (event) {
+  if (event.target.id === "yr-json") {
+    console.log("yr-json dataset (wb-ready):", event.json || event.detail || event);
   }
 });
 
-// Also log when urlmapping has patched
-$(document).on("wb-ready.wb-urlmapping", function () {
-  var yrData = $("#yr-json").data("wb-jsonmanager");
+document.addEventListener("wb-ready.wb-urlmapping", function () {
+  var yrData = document.querySelector("#yr-json").dataset;
   console.log("yr-json dataset after urlmapping:", yrData);
 });
 </script>
