@@ -102,11 +102,12 @@
        "wait": true
      }'></div>
 
-<!-- 3) Where the year is displayed: bind to the dataset NAME -->
+<!-- 3) Where the year is displayed: bind to the dataset NAME
+ (no seed text to avoid duplication) -->
          <ul class="pull-left mrgn-lft-md list-unstyled small">
 <li>
   <a href="manitoba.html">
-    <mark><span data-json-replace="#[yr]/year">2024</span></mark>
+     <mark><span data-json-replace="#[yr]/year"></span></mark>
     Income tax package
   </a>
 </li>
