@@ -101,6 +101,24 @@
        "name": "yr",
        "wait": true
      }'></div>
+<script>
+$(document).on("wb-ready.wb-jsonmanager", "#yr-json", function (event, data) {
+  console.log("yr-json dataset (wb-ready):", data);
+
+  // Extra: log just the year property
+  try {
+    console.log("yr-json year value:", data.year);
+  } catch(e) {
+    console.warn("Could not extract year value:", e);
+  }
+});
+
+// Also log when urlmapping has patched
+$(document).on("wb-ready.wb-urlmapping", function () {
+  var yrData = $("#yr-json").data("wb-jsonmanager");
+  console.log("yr-json dataset after urlmapping:", yrData);
+});
+</script>
         <!-- 4) URL mapping: PATCH the dataset (the JSON manager element), not the span -->
         <div data-wb-urlmapping='{
   "year": {
