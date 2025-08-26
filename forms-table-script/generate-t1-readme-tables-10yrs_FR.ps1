@@ -11,6 +11,26 @@ param(
     [switch]$Overwrite = $true
 )
 
+# --- HTTP bootstrap for WinPS 5.1 (must be AFTER the param(...) block) ---
+
+# Ensure System.Net.Http types are available
+try {
+    $null = [System.Net.Http.HttpMethod]::Get
+} catch {
+    try { Add-Type -AssemblyName System.Net.Http } catch {
+        Write-Warning "Failed to load System.Net.Http: $($_.Exception.Message)"
+    }
+}
+
+# Force modern TLS on older .NET stacks (no-op on PS7+)
+try {
+    [Net.ServicePointManager]::SecurityProtocol =
+        [Net.SecurityProtocolType]::Tls12 -bor
+        [Net.SecurityProtocolType]::Tls11 -bor
+        [Net.SecurityProtocolType]::Tls
+} catch { }
+
+
 # --- Config ---
 # Token in the template to replace with each form code
 $TemplateToken = "5000-s2"
@@ -220,7 +240,9 @@ foreach ($form in $formNames) {
 }
 
 # Cleanup httpclient
-$http.Dispose()
+if ($http) {
+    try { $http.Dispose() } catch { }
+}
 
 # Optional: emit a simple summary table
 if ($results.Count -gt 0) {
