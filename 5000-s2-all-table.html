@@ -28,6 +28,15 @@
     integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
   <link href="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v5_0_2/wet-boew/assets/favicon.ico"
     rel="shortcut icon">
+<!-- DataTables (Bootstrap) -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.11/css/dataTables.bootstrap.min.css">
+
+<!-- Buttons (Bootstrap) -->
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.bootstrap.min.css">
+
+<!-- ColumnControl (Bootstrap) -->
+<link rel="stylesheet" href="/vendor/datatables/columncontrol/css/cc.bootstrap.min.css"><!-- host locally -->
+
 </head>
 
 <body vocab="http://schema.org/" typeof="WebPage" resource="#wb-webpage">
@@ -194,7 +203,7 @@
         </ul>
         <!--Instructions-->
         <section
-          data-ajax-replace="/content/canadasite/en/revenue-agency/services/forms-publications/forms/t5007/instructions.html#instr">
+          data-ajax-replace="https://www.canada.ca/content/canadasite/en/revenue-agency/services/forms-publications/forms/t5007/instructions.html#instr">
         </section>
         <!--Prior year forms -->
         <h2 id="prvs-yrs">Available prior year versions</h2>
@@ -269,18 +278,18 @@
   <script src="https://www.canada.ca/etc/designs/canada/wet-boew/js/theme.min.js"></script>
 
 
-  <!-- DataTables Buttons CSS (Bootstrap integration) -->
-  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.bootstrap.min.css">
+  <!-- DataTables core + Bootstrap integration -->
+  <script src="https://cdn.datatables.net/1.13.11/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.11/js/dataTables.bootstrap.min.js"></script>
 
-  <!-- DataTables Buttons JS -->
+  <!-- Buttons core + Bootstrap integration -->
   <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
   <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.bootstrap.min.js"></script>
 
-  <!-- Optional (if you ever add copy/csv/print later) -->
-  <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+  <!-- ColumnControl core + Bootstrap integration (host your licensed files locally) -->
+  <script src="/vendor/datatables/columncontrol/js/dataTables.columnControl.min.js"></script>
+  <script src="/vendor/datatables/columncontrol/js/cc.bootstrap.min.js"></script>
 
-  <script src="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/méli-mélo/2024-09-kejimkujik.js"></script>
 </body>
 
 </html>
