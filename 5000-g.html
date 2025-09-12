@@ -1299,9 +1299,11 @@
     <div class="alert alert-warning">
     <p>As of this year, the PDF is <strong>no longer available to order</strong> in a paper copy.</p>
     </div>
-    <div class="table-responsive">
-      <table class="wb-tables table table-striped table-hover small" id="year-filter" 
-            data-wb-urlmapping='{
+  <form class="wb-tables-filter" data-bind-to="year-filter">
+    <button type="reset" class="btn btn-default">Clear filter</button>
+  </form>
+  <div class="table-responsive">
+    <table class="wb-tables table filterEmphasis provisional table-striped table-condensed table-hover small" id="year-filter" data-wb-urlmapping='{
                 "year": {
                     "action": "tblfilter",
                     "source": "#year-filter",
@@ -1310,7 +1312,7 @@
                     "match": "^[1-2][0-9][0-9][0-9]$",
                     "default": "2024"
                 }
-            }' aria-live="polite" data-page-length='10' data-wb-tables='{ "ordering": false }'>
+            }' aria-live="polite" data-wb-tables='{ "ordering": false }'>
         <caption class="wb-inv">
         Available formats and prior year versions of the guide
         </caption>
