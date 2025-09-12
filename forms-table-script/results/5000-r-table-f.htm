@@ -1,14 +1,30 @@
-﻿<div class="table-responsive">
-  <table class="wb-tables table table-striped table-condensed table-hover" id="year-filter" data-wb-urlmapping='{
-                "year": {
-                    "action": "tblfilter",
-                    "source": "#year-filter",
-                    "column": 0,
-                    "value": "{qval}",
-                    "match": "^[1-2][0-9][0-9][0-9]$",
-                    "default": "2023"
-                }
-            }' aria-live="polite" data-wb-tables='{ "ordering": false }'>
+﻿<form class="wb-tables-filter" data-bind-to="year-prov-filter">
+<button type="reset" class="btn btn-default">Clear filter</button>
+</form>
+<div class="table-responsive">
+  <table class="wb-tables table filterEmphasis provisional table-striped table-condensed table-hover small" id="year-prov-filter" data-wb-urlmapping='{
+        "year": {
+        "action": "tblfilter",
+        "source": "#year-prov-filter",
+        "column": 0,
+        "value": "{qval}",
+        "match": "^[1-2][0-9][0-9][0-9]$",
+        "default": "2022"
+        },
+        "prov=bc": { "action": "tblfilter", "column": 1, "value": "BC" },
+        "prov=ab": { "action": "tblfilter", "column": 1, "value": "AB" },
+        "prov=sk": { "action": "tblfilter", "column": 1, "value": "SK" },
+        "prov=mb": { "action": "tblfilter", "column": 1, "value": "MB" },
+        "prov=on": { "action": "tblfilter", "column": 1, "value": "ON" },
+        "prov=qc": { "action": "tblfilter", "column": 1, "value": "QC" },
+        "prov=nb": { "action": "tblfilter", "column": 1, "value": "NB" },
+        "prov=ns": { "action": "tblfilter", "column": 1, "value": "NS" },
+        "prov=pe": { "action": "tblfilter", "column": 1, "value": "PE" },
+        "prov=nl": { "action": "tblfilter", "column": 1, "value": "NL" },
+        "prov=yt": { "action": "tblfilter", "column": 1, "value": "YT" },
+        "prov=nt": { "action": "tblfilter", "column": 1, "value": "NT" },
+        "prov=nu": { "action": "tblfilter", "column": 1, "value": "NU" }
+    }' aria-live="polite" data-wb-tables='{ "ordering": false }'>
     <caption class="wb-inv">Versions disponibles des années précédentes</caption>
     <thead>
       <tr>
@@ -22,6 +38,7 @@
     <tbody>
       <tr>
         <th>2023</th>
+        <td> - </td>
         <td><span class="small text-muted">Pas disponible</span></td>
         <td><span class="small text-muted">Pas disponible</span></td>
         <td><span class="small text-muted">Pas disponible</span></td>
@@ -29,6 +46,7 @@
       </tr>
       <tr>
         <th>2022</th>
+        <td>NB<span class="wb-inv">&nbsp;(New Brunswick)</span>, PE<span class="wb-inv">&nbsp;(Prince Edward Island)</span></td>
         <td><a class="small" href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-fill-22f.pdf">5000-r-fill-22f.pdf</a></td>
         <td><a class="small" href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-22f.pdf">5000-r-22f.pdf</a></td>
         <td><a class="small" href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-lp-22f.pdf">5000-r-lp-22f.pdf</a></td>
@@ -36,6 +54,7 @@
       </tr>
       <tr>
         <th>2021</th>
+        <td>AB<span class="wb-inv">&nbsp;(Alberta)</span>, MB<span class="wb-inv">&nbsp;(Manitoba)</span>, NB<span class="wb-inv">&nbsp;(New Brunswick)</span>, NS<span class="wb-inv">&nbsp;(Nova Scotia)</span>, NU<span class="wb-inv">&nbsp;(Nunavut)</span>, PE<span class="wb-inv">&nbsp;(Prince Edward Island)</span>, SK<span class="wb-inv">&nbsp;(Saskatchewan)</span></td>
         <td><a class="small" href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-fill-21f.pdf">5000-r-fill-21f.pdf</a></td>
         <td><a class="small" href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-21f.pdf">5000-r-21f.pdf</a></td>
         <td><a class="small" href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-lp-21f.pdf">5000-r-lp-21f.pdf</a></td>
@@ -43,6 +62,7 @@
       </tr>
       <tr>
         <th>2020</th>
+        <td>NB<span class="wb-inv">&nbsp;(New Brunswick)</span>, NS<span class="wb-inv">&nbsp;(Nova Scotia)</span>, NU<span class="wb-inv">&nbsp;(Nunavut)</span>, PE<span class="wb-inv">&nbsp;(Prince Edward Island)</span></td>
         <td><a class="small" href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-fill-20f.pdf">5000-r-fill-20f.pdf</a></td>
         <td><a class="small" href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-20f.pdf">5000-r-20f.pdf</a></td>
         <td><a class="small" href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5000-r-lp-20f.pdf">5000-r-lp-20f.pdf</a></td>
@@ -50,6 +70,7 @@
       </tr>
       <tr>
         <th>2019</th>
+        <td>NB<span class="wb-inv">&nbsp;(New Brunswick)</span>, NS<span class="wb-inv">&nbsp;(Nova Scotia)</span>, PE<span class="wb-inv">&nbsp;(Prince Edward Island)</span></td>
         <td><a class="small" href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5100-r-fill-19f.pdf">5100-r-fill-19f.pdf</a></td>
         <td><a class="small" href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5100-r-19f.pdf">5100-r-19f.pdf</a></td>
         <td><a class="small" href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5100-r-lp-19f.pdf">5100-r-lp-19f.pdf</a></td>
@@ -57,6 +78,7 @@
       </tr>
       <tr>
         <th>2018</th>
+        <td>AB<span class="wb-inv">&nbsp;(Alberta)</span>, NS<span class="wb-inv">&nbsp;(Nova Scotia)</span>, PE<span class="wb-inv">&nbsp;(Prince Edward Island)</span></td>
         <td><a class="small" href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5100-r-fill-18f.pdf">5100-r-fill-18f.pdf</a></td>
         <td><a class="small" href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5100-r-18f.pdf">5100-r-18f.pdf</a></td>
         <td><a class="small" href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5100-r-lp-18f.pdf">5100-r-lp-18f.pdf</a></td>
@@ -64,6 +86,7 @@
       </tr>
       <tr>
         <th>2017</th>
+        <td>AB<span class="wb-inv">&nbsp;(Alberta)</span>, MB<span class="wb-inv">&nbsp;(Manitoba)</span>, NB<span class="wb-inv">&nbsp;(New Brunswick)</span>, NS<span class="wb-inv">&nbsp;(Nova Scotia)</span>, NU<span class="wb-inv">&nbsp;(Nunavut)</span>, PE<span class="wb-inv">&nbsp;(Prince Edward Island)</span>, SK<span class="wb-inv">&nbsp;(Saskatchewan)</span></td>
         <td><a class="small" href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5100-r-fill-17f.pdf">5100-r-fill-17f.pdf</a></td>
         <td><a class="small" href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5100-r-17f.pdf">5100-r-17f.pdf</a></td>
         <td><a class="small" href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5100-r-lp-17f.pdf">5100-r-lp-17f.pdf</a></td>
@@ -71,6 +94,7 @@
       </tr>
       <tr>
         <th>2016</th>
+        <td>AB<span class="wb-inv">&nbsp;(Alberta)</span>, MB<span class="wb-inv">&nbsp;(Manitoba)</span>, NB<span class="wb-inv">&nbsp;(New Brunswick)</span>, NS<span class="wb-inv">&nbsp;(Nova Scotia)</span>, NU<span class="wb-inv">&nbsp;(Nunavut)</span>, PE<span class="wb-inv">&nbsp;(Prince Edward Island)</span>, SK<span class="wb-inv">&nbsp;(Saskatchewan)</span></td>
         <td><a class="small" href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5100-r-fill-16f.pdf">5100-r-fill-16f.pdf</a></td>
         <td><a class="small" href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5100-r-16f.pdf">5100-r-16f.pdf</a></td>
         <td><a class="small" href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5100-r-lp-16f.pdf">5100-r-lp-16f.pdf</a></td>
@@ -78,6 +102,7 @@
       </tr>
       <tr>
         <th>2015</th>
+        <td>AB<span class="wb-inv">&nbsp;(Alberta)</span>, MB<span class="wb-inv">&nbsp;(Manitoba)</span>, NB<span class="wb-inv">&nbsp;(New Brunswick)</span>, NU<span class="wb-inv">&nbsp;(Nunavut)</span></td>
         <td><a class="small" href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5100-r-fill-15f.pdf">5100-r-fill-15f.pdf</a></td>
         <td><a class="small" href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-r/5100-r-15f.pdf">5100-r-15f.pdf</a></td>
         <td><span class="small text-muted">Pas disponible</span></td>
@@ -86,4 +111,3 @@
     </tbody>
   </table>
 </div>
-
