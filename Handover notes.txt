@@ -2,9 +2,9 @@ Handover notes
 - For guides, removing the Readmes will be a bit of work, as some are being listed in the left menu of the many pages of the of the guide itself. (These are archived pages, so perhaps just remove the Hyperlinks.
 - All the table have a provisional Filter emphasis and a clear filter button above it.
 - The form tables should be complete now.
-- The guide tables are not. The html links need to be added. The tricker part is to come up with consistent but adequate link texts.
+- The guide tables are not. The html links need to be added. The tricker part is to come up with consistent but adequate link texts. I am going with the title of the current year guide.
 Those that are completed are:
-5000-g, 5013-g, 5007-pc
+5000-g, 5001-pc, 5013-g, 5007-pc
 
 
 - After you are done all your testing, you will be able make the links relative
@@ -31,3 +31,5 @@ Those that are completed are:
         <th>PDF en caractères standards</th>
         <th>PDF en gros caractères</th>
         <th>Texte électronique</th
+
+- All guide tables should only go on the current year Guide page, and the prior years. Prior year guides can point to the h2 section of the current year guide.
