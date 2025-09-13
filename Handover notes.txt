@@ -4,7 +4,7 @@ Handover notes
 - The form tables should be complete now.
 - The guide tables are not. The html links need to be added. The tricker part is to come up with consistent but adequate link texts. I am going with the title of the current year guide.
 Those that are completed are:
-5000-g, 5001-pc, 5013-g, 5007-pc
+5000-g, 5001-pc, 5002-pc, 5013-g, 5007-pc
 
 
 - After you are done all your testing, you will be able make the links relative
