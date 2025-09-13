@@ -1,0 +1,33 @@
+Handover notes
+- For guides, removing the Readmes will be a bit of work, as some are being listed in the left menu of the many pages of the of the guide itself. (These are archived pages, so perhaps just remove the Hyperlinks.
+- All the table have a provisional Filter emphasis and a clear filter button above it.
+- The form tables should be complete now.
+- The guide tables are not. The html links need to be added. The tricker part is to come up with consistent but adequate link texts.
+Those that are completed are:
+5000-g, 5013-g, 5007-pc
+
+
+- After you are done all your testing, you will be able make the links relative
+- Some translations decision may still be needed - I will run that by Isabelle.
+
+
+<button type="reset" class="btn btn-default">Clear filter</button>
+<button type="reset" class="btn btn-default">Supprimer le filtre</button>
+
+    <caption class="wb-inv">Versions disponibles des années précédentes</caption>
+    <thead>
+      <tr>
+        <th>Année</th>
+        <th>PDF à remplir</th>
+        <th>PDF en caractères standards</th>
+        <th>PDF en gros caractères</th>
+        <th>Texte électronique</th>
+
+    <caption class="wb-inv">Versions disponibles des années précédentes</caption>
+    <thead>
+      <tr>
+        <th>Année</th>
+        <th>PDF à remplir</th>
+        <th>PDF en caractères standards</th>
+        <th>PDF en gros caractères</th>
+        <th>Texte électronique</th
