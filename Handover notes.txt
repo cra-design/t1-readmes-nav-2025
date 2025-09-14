@@ -10,10 +10,11 @@ Those that are completed are:
 - After you are done all your testing, you will be able make the links relative
 - Some translations decision may still be needed - I will run that by Isabelle.
 
-
+-------------------
 <button type="reset" class="btn btn-default">Clear filter</button>
 <button type="reset" class="btn btn-default">Supprimer le filtre</button>
 
+-------------------
     <caption class="wb-inv">Versions disponibles des années précédentes</caption>
     <thead>
       <tr>
@@ -30,6 +31,11 @@ Those that are completed are:
         <th>PDF à remplir</th>
         <th>PDF en caractères standards</th>
         <th>PDF en gros caractères</th>
-        <th>Texte électronique</th
+        <th>Texte électronique</th>
 
+-------------------
+    <td>Current page</td>
+    <td>Page actuelle</td>
+
+-------------------
 - All guide tables should only go on the current year Guide page, and the prior years. Prior year guides can point to the h2 section of the current year guide.
