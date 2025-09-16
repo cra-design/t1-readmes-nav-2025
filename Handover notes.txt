@@ -2,11 +2,6 @@ Handover notes
 - For guides, removing the Readmes will be a bit of work, as some are being listed in the left menu of the many pages of the of the guide itself. (These are archived pages, so perhaps just remove the Hyperlinks.
 - All the table have a provisional Filter emphasis and a clear filter button above it.
 - The form tables should be complete now.
-- The guide tables are not. The html links need to be added. The tricker part is to come up with consistent but adequate link texts. I am going with the title of the current year guide.
-Those that are completed are:
-5000-g, 5001-pc, 5002-pc, 5003-pc, 5004-pc, 5005-pc, 5005-pc, 5013-g, 5007-pc, 5008-pc, 5009-pc, 5010-pc,     5012-pc, 5013-g, 5014-pc
-
-
 - After you are done all your testing, you will be able make the links relative
 - Some translations decision may still be needed - I will run that by Isabelle.
 
