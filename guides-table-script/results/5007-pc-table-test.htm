@@ -1,5 +1,22 @@
-<div class="table-responsive" id="resp-table">
-  <table class="wb-tables table filterEmphasis provisional table-striped table-condensed table-hover small" id="year-filter">
+<div class="table-responsive">
+  <table
+    class="wb-tables table filterEmphasis provisional table-striped table-condensed table-hover small"
+    id="year-filter"
+    data-wb-tables='{
+      "paging": false,
+      "info": false,
+      "ordering": false
+    }'
+    data-wb-urlmapping='{
+      "year": {
+        "action": "tblfilter",
+        "column": 0,                // Year column index
+        "value": "{qval}",          // value from ?year=YYYY
+        "match": "^(19|20)\\d{2}$",
+        "default": "2023"           // if ?year missing/invalid, no filter applied
+      }
+    }'
+  >
     <caption class="wb-inv">All available formats and years for this guide</caption>
     <thead>
       <tr>
