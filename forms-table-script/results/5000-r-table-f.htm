@@ -1,29 +1,16 @@
-﻿<form class="wb-tables-filter" data-bind-to="year-prov-filter">
+﻿<form class="wb-tables-filter" data-bind-to="year-filter">
 <button type="reset" class="btn btn-default">Supprimer le filtre</button>
 </form>
 <div class="table-responsive">
-  <table class="wb-tables table filterEmphasis provisional table-striped table-condensed table-hover small" id="year-prov-filter" data-wb-urlmapping='{
+  <table class="wb-tables table filterEmphasis provisional table-striped table-condensed table-hover small" id="year-filter" data-wb-urlmapping='{
         "year": {
         "action": "tblfilter",
-        "source": "#year-prov-filter",
+        "source": "#year-filter",
         "column": 0,
         "value": "{qval}",
         "match": "^[1-2][0-9][0-9][0-9]$",
         "default": "2022"
-        },
-        "prov=bc": { "action": "tblfilter", "column": 1, "value": "BC" },
-        "prov=ab": { "action": "tblfilter", "column": 1, "value": "AB" },
-        "prov=sk": { "action": "tblfilter", "column": 1, "value": "SK" },
-        "prov=mb": { "action": "tblfilter", "column": 1, "value": "MB" },
-        "prov=on": { "action": "tblfilter", "column": 1, "value": "ON" },
-        "prov=qc": { "action": "tblfilter", "column": 1, "value": "QC" },
-        "prov=nb": { "action": "tblfilter", "column": 1, "value": "NB" },
-        "prov=ns": { "action": "tblfilter", "column": 1, "value": "NS" },
-        "prov=pe": { "action": "tblfilter", "column": 1, "value": "PE" },
-        "prov=nl": { "action": "tblfilter", "column": 1, "value": "NL" },
-        "prov=yt": { "action": "tblfilter", "column": 1, "value": "YT" },
-        "prov=nt": { "action": "tblfilter", "column": 1, "value": "NT" },
-        "prov=nu": { "action": "tblfilter", "column": 1, "value": "NU" }
+        }
     }' aria-live="polite" data-wb-tables='{ "ordering": false }'>
     <caption class="wb-inv">Versions disponibles des années précédentes</caption>
     <thead>
