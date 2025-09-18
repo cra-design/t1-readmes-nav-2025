@@ -1,14 +1,25 @@
-﻿<div class="table-responsive">
-  <table class="wb-tables table table-striped table-condensed table-hover" id="year-filter" data-wb-urlmapping='{
-                "year": {
-                    "action": "tblfilter",
-                    "source": "#year-filter",
-                    "column": 0,
-                    "value": "{qval}",
-                    "match": "^[1-2][0-9][0-9][0-9]$",
-                    "default": "2023"
-                }
-            }' aria-live="polite" data-page-length='50' data-wb-tables='{ "ordering": false }'>
+﻿<form class="wb-tables-filter" data-bind-to="year-filter">
+<button type="reset" class="btn btn-default">Clear filter</button>
+</form>
+<div class="table-responsive">
+  <table class="wb-tables table filterEmphasis provisional table-striped table-condensed table-hover small" id="year-filter" aria-live="polite" data-wb-urlmapping='{
+            "year": {
+            "action": "tblfilter",
+            "source": "#year-filter",
+            "column": 0,
+            "value": "{qval}",
+            "match": "^[1-2][0-9][0-9][0-9]$",
+            "default": "2024"
+          }
+        }'
+        data-wb-tables='{
+          "ordering": true,
+          "order": [[0, "desc"]],
+          "paging": false,
+          "retrieve": true
+        }'>
+      <!-- Do not remove the above "retrieve" and "stateSave" options. 
+           If you do, you will get a datatable initialization error  -->
     <caption class="wb-inv">
       Available prior year versions
     </caption>
