@@ -50,37 +50,6 @@
     <!--#include virtual="/app/cls/WET/gcweb/v4_0_43/cdts/static/top-en.html" -->
   </div>
   <!-- Write closure template -->
-  <script>
-    var defTop = document.getElementById("def-top");
-    defTop.outerHTML = wet.builder.top({
-      lngLinks: [{
-        lang: "fr",
-        href: "#",
-        text: "Français"
-      }],
-      customSearch: [{
-        action: "www.canada.ca/en/revenue-agency/search.html",
-        placeholder: "CRA",
-        method: "get",
-      }],
-      signIn: [{
-        href: "https://www.canada.ca/en/revenue-agency/services/e-services/cra-login-services.html"
-      }],
-      breadcrumbs: [{
-        title: "Canada.ca",
-        href: "https://www.canada.ca/en.html"
-      }, {
-        title: "Canada Revenue Agency (CRA)",
-        href: "https://www.canada.ca/en/revenue-agency.html"
-      }, {
-        title: "Forms and publications - CRA",
-        href: "https://www.canada.ca/en/revenue-agency/services/forms-publications.html"
-      }, {
-        title: "Get a T1 income tax package??",
-        href: "general-income-tax-benefit-package.html"
-      }]
-    });
-  </script>
 
   <!-- Write closure template -->
   <div class="container">
@@ -132,6 +101,41 @@
     </div>
   </div>
 
+  <!-- Write closure template -->
+  <script>
+    var defPreFooter = document.getElementById("def-preFooter");
+    defPreFooter.outerHTML = wet.builder.preFooter({
+      showShare: false,
+      pagedetails: false
+    });
+  </script>
+  <div id="def-footer">
+    <!-- Write closure fall-back static file -->
+    <!-- /ROOT/app/cls/WET/gcweb/v4_0_43/cdts/static/footer-en.html -->
+    <!--#include virtual="/app/cls/WET/gcweb/v4_0_43/cdts/static/footer-en.html" -->
+  </div>
+  <!-- Write closure template -->
+  <script>
+    var defFooter = document.getElementById("def-footer");
+    defFooter.outerHTML = wet.builder.footer({
+      privacyLink: {
+        href: "https://www.canada.ca/en/revenue-agency/corporate/privacy-notice.html"
+      },
+      contextualFooter: {
+        title: "Canada Revenue Agency (CRA)",
+        links: [{
+          text: "Contact the CRA",
+          href: "https://www.canada.ca/en/revenue-agency/corporate/contact-information.html"
+        }, {
+          text: "About the CRA",
+          href: "https://www.canada.ca/en/revenue-agency/corporate/about-canada-revenue-agency-cra.html"
+        }, {
+          text: "Compliance and enforcement",
+          href: "https://www.canada.ca/en/revenue-agency/programs/about-canada-revenue-agency-cra/compliance.html"
+        }]
+      }
+    });
+  </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"
     integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
   <script src="https://www.canada.ca/etc/designs/canada/wet-boew/js/ep-pp.min.js"></script>
