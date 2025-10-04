@@ -117,106 +117,12 @@
       <span data-json-replace="#[yr]/year"></span> Income tax package
     </a>
   </li>
-</ul> --
+</ul>
 <div class="clearfix">&nbsp;</div>
-        <!--PDF instructions-->
-        <section id="instructions" class="mfp-hide modal-dialog modal-content overlay-def">
-          <header class="modal-header">
-            <h2 class="modal-title">Download instructions for fillable PDFs</h2>
-          </header>
-          <div class="modal-body">
-            <section
-              data-ajax-replace="https://www.canada.ca/content/dam/cra-arc/formspubs/include/pdf-instructions.txt#pdf-forms-eng">
-              <p class="mrgn-tp-md">To complete a fillable form, you <strong>must download</strong> the
-                accessible fillable PDF to your computer. Use <a href="https://get.adobe.com/reader/">Acrobat Reader 10
-                  or later</a> to open the
-                file. Do <strong>not</strong> click the link to open it in your web browser. </p>
-              <ol>
-                <li>Download and save the PDF to your computer</li>
-                <li>Open the downloaded PDF in Acrobat Reader 10 or later</li>
-              </ol>
-            </section>
-          </div>
-        </section>
-        <!--Description-->
-        <p class="mrgn-bttm-md">Description here... Description here... Description here... Description here...
-          Description here... </p>
-        <!--Ways to get the form-->
-        <h2>Ways to get the form</h2>
-        <ul class="fa-ul">
-          <!--Online--><!--Fillable-->
-          <li><span class="fas fa-file-download text-muted fa-lg fa-li"></span>
-            <h3>Download and fill out with Acrobat Reader</h3>
-            <p class="mrgn-bttm-md">To complete a fillable form, you <strong>must</strong> <a class="wb-lbx"
-                href="#instructions">download the fillable PDF and open <span class="nowrap">it<span
-                    class="far fa-question-circle mrgn-lft-sm"></span></span></a> in Acrobat Reader
-              10 or higher.</p>
-            <ul>
-              <li><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-s2/5000-s2-fill-24e.pdf"
-                  download="5000-s2-fill-24e.pdf">2024 - <span class="wb-inv">Accessible</span> Fillable PDF
-                  (5000-s2-fill-24e.pdf)</a></li>
-            </ul>
-          </li>
-          <!--Flat-->
-          <li><span class="fas fa-pencil-alt text-muted fa-lg fa-li"></span>
-            <h3>Print and fill out by hand</h3>
-            <ul>
-              <li><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-s2/5000-s2-24e.pdf">2024 -
-                  Standard print PDF (5000-s2-24e.pdf)</a></li>
-              <li><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-s2/5000-s2-lp-24e.pdf">2024 -
-                  Large print PDF (5000-s2-lp-24e.pdf)</a></li>
-            </ul>
-          </li>
-
-          <!--E-text-->
-          <li> <span class="fas fa-volume-up text-muted fa-lg fa-li"></span>
-            <h3>Download and listen</h3>
-            <p>Use your preferred screen reader to listen to the e-text file.</p>
-            <ul>
-              <li><a href="https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5000-s2/5000-s2-24e.txt">2024 -
-                  E-text (5000-s2-24e.txt)</a></li>
-            </ul>
-          </li>
-          <!--Order Alt Format-->
-          <li><span class="fas fa-universal-access text-muted fa-lg fa-li"></span>
-            <!--<section data-ajax-replace="https://www.canada.ca/content/dam/cra-arc/formspubs/include/altformat.txt#altformat-eng">-->
-            <section>
-              <h3>Get an alternate format by mail</h3>
-              <p>You can order a digital audio, e-text, braille or large print version of this form to be mailed to you:
-              </p>
-              <ul>
-                <li><a
-                    href="https://www.canada.ca/en/revenue-agency/services/forms-publications/help-forms-publications/about-multiple-formats.html">Order
-                    alternate formats for persons with disabilities</a></li>
-              </ul>
-            </section>
-          </li>
-        </ul>
-        <!--Instructions-->
-        <section
-          data-ajax-replace="https://www.canada.ca/content/canadasite/en/revenue-agency/services/forms-publications/forms/t5007/instructions.html#instr">
-        </section>
         <!--Prior year forms -->
         <h2 id="prvs-yrs">Available prior year versions</h2>
         <section data-ajax-replace="forms-table-script/results/5000-s2-table-e.htm"></section>
         <p class="mrgn-tp-lg">This page includes versions from the last 10 years. For older versions, find <a href="https://webarchiveweb.wayback.bac-lac.canada.ca/web/20250403094844/https:/www.canada.ca/en/revenue-agency/services/forms-publications/tax-packages-years.html">past personal income tax packages preserved by Library and Archives Canada</a> within the Government of Canada Web Archive.</p>
-        <section class="pagedetails">
-          <h2 class="wb-inv">Page details</h2>
-          <div class="row">
-            <div class="col-sm-8 col-md-9 col-lg-9">
-              <div
-                data-ajax-replace="https://www.canada.ca/etc/designs/canada/wet-boew/assets/feedback/page-feedback-en.html"
-                class="wb-disable-allow" data-feedback-section="page title" data-feedback-theme="Taxes"
-                data-feedback-institution="."></div>
-            </div>
-          </div>
-          <dl id="wb-dtmd">
-            <dt>Date modified:</dt>
-            <dd>
-        <time property="dateModified">2025-##-##</time>
-            </dd>
-          </dl>
-        </section>
         <div id="def-preFooter">
           <!-- Write closure fall-back static file -->
           <!-- /ROOT/etc/designs/canada/cdts/gcweb/v4_0_43/cdts/static/preFooter-en.html -->
@@ -226,41 +132,6 @@
     </div>
   </div>
 
-  <!-- Write closure template -->
-  <script>
-    var defPreFooter = document.getElementById("def-preFooter");
-    defPreFooter.outerHTML = wet.builder.preFooter({
-      showShare: false,
-      pagedetails: false
-    });
-  </script>
-  <div id="def-footer">
-    <!-- Write closure fall-back static file -->
-    <!-- /ROOT/app/cls/WET/gcweb/v4_0_43/cdts/static/footer-en.html -->
-    <!--#include virtual="/app/cls/WET/gcweb/v4_0_43/cdts/static/footer-en.html" -->
-  </div>
-  <!-- Write closure template -->
-  <script>
-    var defFooter = document.getElementById("def-footer");
-    defFooter.outerHTML = wet.builder.footer({
-      privacyLink: {
-        href: "https://www.canada.ca/en/revenue-agency/corporate/privacy-notice.html"
-      },
-      contextualFooter: {
-        title: "Canada Revenue Agency (CRA)",
-        links: [{
-          text: "Contact the CRA",
-          href: "https://www.canada.ca/en/revenue-agency/corporate/contact-information.html"
-        }, {
-          text: "About the CRA",
-          href: "https://www.canada.ca/en/revenue-agency/corporate/about-canada-revenue-agency-cra.html"
-        }, {
-          text: "Compliance and enforcement",
-          href: "https://www.canada.ca/en/revenue-agency/programs/about-canada-revenue-agency-cra/compliance.html"
-        }]
-      }
-    });
-  </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"
     integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
   <script src="https://www.canada.ca/etc/designs/canada/wet-boew/js/ep-pp.min.js"></script>
