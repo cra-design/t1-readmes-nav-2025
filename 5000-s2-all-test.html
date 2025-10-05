@@ -103,150 +103,70 @@
        "debug": true
      }'></div>
 
-<!-- 3a) URL-mapping for ?pkgyr=YYYY: only sets /year -->
 <div data-wb-urlmapping='{
-  "pkgyr": {
+  "prov": {
     "action": "patch",
     "source": "#pkg-json",
-    "match": "^[12][0-9]{3}$",
-    "default": "2024",
+    "match": "^(ab|bc|mb|nb|nl|ns|nt|nu|on|pe|qc|sk|yt|nr)$",
+    "default": "",
     "patches": [
-      { "op": "replace", "path": "/year", "value": "{qval}" }
+      { "op": "add", "path": "/provCode", "value": "{qval}" }
     ]
   }
 }'></div>
 
-<!-- 3b) URL-mapping for ?prov=xx : 2-letter → dashed full name -->
-<!-- Alberta -->
-<div data-wb-urlmapping='{
-  "prov": {
-    "action": "patch",
-    "source": "#pkg-json",
-    "match": "^ab$",
-    "patches": [{ "op": "replace", "path": "/href", "value": "{#[pkg]/year}-alberta.html" }]
-  }
-}'></div>
+<script type="application/json" id="prov-lookup">
+{
+  "ab": "alberta",
+  "bc": "british-columbia",
+  "mb": "manitoba",
+  "nb": "new-brunswick",
+  "nl": "newfoundland-and-labrador",
+  "ns": "nova-scotia",
+  "nt": "northwest-territories",
+  "nu": "nunavut",
+  "on": "ontario",
+  "pe": "prince-edward-island",
+  "qc": "quebec",
+  "sk": "saskatchewan",
+  "yt": "yukon",
+  "nr": "non-resident"
+}
+</script>
 
-<!-- British Columbia -->
-<div data-wb-urlmapping='{
-  "prov": {
-    "action": "patch",
-    "source": "#pkg-json",
-    "match": "^bc$",
-    "patches": [{ "op": "replace", "path": "/href", "value": "{#[pkg]/year}-british-columbia.html" }]
-  }
-}'></div>
+<script>
+  (function () {
+    // Wait for JSON manager to publish the dataset
+    $(document).one("wb-ready.wb-jsonmanager", function () {
+      try {
+        var pkg = window.wb && wb.getData && wb.getData({ name: "pkg" });
+        if (!pkg) return;
 
-<!-- Manitoba -->
-<div data-wb-urlmapping='{
-  "prov": {
-    "action": "patch",
-    "source": "#pkg-json",
-    "match": "^mb$",
-    "patches": [{ "op": "replace", "path": "/href", "value": "{#[pkg]/year}-manitoba.html" }]
-  }
-}'></div>
+        var provCode = (pkg.provCode || "").toLowerCase();
+        if (!provCode) return; // no province: keep generic href
 
-<!-- New Brunswick -->
-<div data-wb-urlmapping='{
-  "prov": {
-    "action": "patch",
-    "source": "#pkg-json",
-    "match": "^nb$",
-    "patches": [{ "op": "replace", "path": "/href", "value": "{#[pkg]/year}-new-brunswick.html" }]
-  }
-}'></div>
+        // Read the lookup table embedded above
+        var provMapEl = document.getElementById("prov-lookup");
+        if (!provMapEl) return;
+        var provMap = JSON.parse(provMapEl.textContent || "{}");
+        var slug = provMap[provCode];
+        if (!slug) return; // unknown code: keep generic href
 
-<!-- Newfoundland and Labrador -->
-<div data-wb-urlmapping='{
-  "prov": {
-    "action": "patch",
-    "source": "#pkg-json",
-    "match": "^nl$",
-    "patches": [{ "op": "replace", "path": "/href", "value": "{#[pkg]/year}-newfoundland-and-labrador.html" }]
-  }
-}'></div>
+        var yr = pkg.year || "2024";
+        var newHref = "/" + yr + "-" + slug + ".html";
 
-<!-- Nova Scotia -->
-<div data-wb-urlmapping='{
-  "prov": {
-    "action": "patch",
-    "source": "#pkg-json",
-    "match": "^ns$",
-    "patches": [{ "op": "replace", "path": "/href", "value": "{#[pkg]/year}-nova-scotia.html" }]
-  }
-}'></div>
+        // Patch the dataset in-place so your <a data-wb-json ...> sees it
+        pkg.href = newHref;
 
-<!-- Northwest Territories -->
-<div data-wb-urlmapping='{
-  "prov": {
-    "action": "patch",
-    "source": "#pkg-json",
-    "match": "^nt$",
-    "patches": [{ "op": "replace", "path": "/href", "value": "{#[pkg]/year}-northwest-territories.html" }]
-  }
-}'></div>
-
-<!-- Nunavut -->
-<div data-wb-urlmapping='{
-  "prov": {
-    "action": "patch",
-    "source": "#pkg-json",
-    "match": "^nu$",
-    "patches": [{ "op": "replace", "path": "/href", "value": "{#[pkg]/year}-nunavut.html" }]
-  }
-}'></div>
-
-<!-- Ontario -->
-<div data-wb-urlmapping='{
-  "prov": {
-    "action": "patch",
-    "source": "#pkg-json",
-    "match": "^on$",
-    "patches": [{ "op": "replace", "path": "/href", "value": "{#[pkg]/year}-ontario.html" }]
-  }
-}'></div>
-
-<!-- Prince Edward Island -->
-<div data-wb-urlmapping='{
-  "prov": {
-    "action": "patch",
-    "source": "#pkg-json",
-    "match": "^pe$",
-    "patches": [{ "op": "replace", "path": "/href", "value": "{#[pkg]/year}-prince-edward-island.html" }]
-  }
-}'></div>
-
-<!-- Quebec -->
-<div data-wb-urlmapping='{
-  "prov": {
-    "action": "patch",
-    "source": "#pkg-json",
-    "match": "^qc$",
-    "patches": [{ "op": "replace", "path": "/href", "value": "{#[pkg]/year}-quebec.html" }]
-  }
-}'></div>
-
-<!-- Saskatchewan -->
-<div data-wb-urlmapping='{
-  "prov": {
-    "action": "patch",
-    "source": "#pkg-json",
-    "match": "^sk$",
-    "patches": [{ "op": "replace", "path": "/href", "value": "{#[pkg]/year}-saskatchewan.html" }]
-  }
-}'></div>
-
-<!-- Yukon -->
-<div data-wb-urlmapping='{
-  "prov": {
-    "action": "patch",
-    "source": "#pkg-json",
-    "match": "^yt$",
-    "patches": [{ "op": "replace", "path": "/href", "value": "{#[pkg]/year}-yukon.html" }]
-  }
-}'></div>
-
+        // If you want to update any already-rendered bindings, trigger WET refresh:
+        $(document).trigger("wb-update.wb-json", [{ json: pkg, name: "pkg" }]);
+      } catch (e) {
+        // Fail-safe: keep generic link
+        console.warn("Province mapping skipped:", e);
+      }
+    });
+  })();
+</script>
 
 <!-- 4) Render the link (reads from the dataset published above) -->
 <p class="small mrgn-tp-sm"><strong>You may be looking for:</strong>
