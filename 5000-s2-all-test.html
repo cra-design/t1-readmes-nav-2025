@@ -89,12 +89,12 @@
         <h1 property="name" id="wb-cont" dir="ltr"> 5000-S2 Schedule 2 - Federal Amounts Transferred from your
           Spouse or Common-Law Partner (for all except QC and non-residents)</h1>
 
-<!-- 1) Default data (when there’s no ?yr=… / ?year=… present) -->
+<!-- 1) Seed (default when no query param is present) -->
 <script type="application/json" id="pkg-seed">
 { "year": "2024", "href": "archived-general-income-tax-benefit-package-2024.html" }
 </script>
 
-<!-- 2) JSON Manager: publish dataset "pkg" and wait for patches -->
+<!-- 2) Publish dataset and wait for patches BEFORE anything reads it -->
 <div id="pkg-json" class="wb-inv"
      data-wb-jsonmanager='{
        "url": "#pkg-seed",
@@ -103,35 +103,27 @@
        "debug": true
      }'></div>
 
-<!-- 3) URL mapping: prefer ?yr=YYYY; fallback to ?year=YYYY (same regex) -->
+<!-- 3) Single URL-mapping using a unique key (pkgyr) with strict regex -->
 <div data-wb-urlmapping='{
-  "yr": {
+  "pkgyr": {
     "action": "patch",
     "source": "#pkg-json",
-    "match": "^(201[4-9]|202[0-9])$",
+    "match": "^[12][0-9]{3}$",
+    "default": "2024",
     "patches": [
       { "op": "replace", "path": "/year", "value": "{qval}" },
       { "op": "replace", "path": "/href", "value": "archived-general-income-tax-benefit-package-{qval}.html" }
     ]
-  },
-  "year": {
-    "action": "patch",
-    "source": "#pkg-json",
-    "match": "^(201[4-9]|202[0-9])$",
-    "patches": [
-      { "op": "replace", "path": "/year", "value": "{qvl}" },
-      { "op": "replace", "path": "/href", "value": "archived-general-income-tax-benefit-package-{qval}.html" }
-    ],
-    "default": "2024"
   }
 }'></div>
 
-<!-- 4) Render the link under the H1 (no <template> needed here) -->
+<!-- 4) Render the link (reads from the dataset published above) -->
 <p class="small mrgn-tp-sm"><strong>You may be looking for:</strong></p>
 <a class="small"
    data-wb-json='{"url":"#[pkg]/href","type":"attr","attr":"href"}'>
   <span data-json-replace="#[pkg]/year"></span> Income tax package
 </a>
+
 
 <div class="clearfix" aria-hidden="true"></div>
 
