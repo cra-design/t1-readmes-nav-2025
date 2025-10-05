@@ -91,49 +91,54 @@
 
 <!-- Visible label -->
 <p class="pull-left small"><strong>You may be looking for:</strong></p>
+<!-- Label (optional) -->
+<p class="small mrgn-tp-sm"><strong>You may be looking for:</strong></p>
 
-<!-- UL will be populated from the JSON dataset via an HTML5 template -->
-<ul class="pull-left mrgn-lft-md list-unstyled small"
+<!-- Where the templated link will render -->
+<ul class="list-unstyled small"
     data-wb-json='{
-      "url": "#[yr]",
-      "source": "#pkg-link-tpl",
+      "url": "[pkg]#/",
+      "source": "#h1-link-tpl",
       "streamline": true,
       "mapping": [
-        { "selector": "#pkg-year", "value": "/year" },
-        { "selector": "#pkg-link", "value": "/pkgHref", "attr": "href" }
+        { "selector": ".pkg-year", "value": "/year" },
+        { "selector": ".pkg-link", "value": "/href", "attr": "href" }
       ]
     }'>
 </ul>
-<div class="clearfix" aria-hidden="true"></div>
 
-<!-- HTML5 template (Template HTML5 pattern with Data JSON) -->
-<template id="pkg-link-tpl">
-  <li><a id="pkg-link"><span id="pkg-year"></span> Income tax package</a></li>
+<!-- HTML5 template the Data JSON plugin will fill -->
+<template id="h1-link-tpl">
+  <li>
+    <a class="pkg-link">
+      <span class="pkg-year"></span> Income tax package
+    </a>
+  </li>
 </template>
 
-<!-- Seed dataset -->
-<script type="application/json" id="yr-data">
-  { "year": "2024", "pkgHref": "archived-general-income-tax-benefit-package-2024.html" }
+<!-- Seed JSON (default values when no ?year=… is present) -->
+<script type="application/json" id="pkg-seed">
+{ "year": "2024", "href": "archived-general-income-tax-benefit-package-2024.html" }
 </script>
 
-<!-- JSON Manager: exposes dataset "yr" and waits for URL mapping patches -->
-<div id="yr-json" class="wb-inv" aria-hidden="true"
+<!-- JSON Manager: exposes dataset "pkg" and waits for patches -->
+<div id="pkg-json" class="wb-inv" aria-hidden="true"
      data-wb-jsonmanager='{
-       "url": "#yr-data",
-       "name": "yr",
+       "url": "#pkg-seed",
+       "name": "pkg",
        "wait": true
      }'></div>
 
-<!-- URL Mapping: patches the dataset from ?year=YYYY -->
+<!-- URL Mapping: reads ?year=YYYY and patches the dataset once -->
 <div data-wb-urlmapping='{
   "year": {
     "action": "patch",
-    "source": "#yr-json",
+    "source": "#pkg-json",
     "match": "^(201[4-9]|202[0-9])$",
     "default": "2024",
     "patches": [
       { "op": "replace", "path": "/year", "value": "{qval}" },
-      { "op": "replace", "path": "/pkgHref", "value": "archived-general-income-tax-benefit-package-{qval}.html" }
+      { "op": "replace", "path": "/href", "value": "archived-general-income-tax-benefit-package-{qval}.html" }
     ]
   }
 }'></div>
