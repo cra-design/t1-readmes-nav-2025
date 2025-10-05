@@ -185,7 +185,7 @@
               "url": "#pkg-seed",
               "name": "pkg",
               "wait": true,
-              "debug": true
+              "debug": false
             }'></div>
 
         <!-- 3) Single URL-mapping using a unique key (pkgyr) with strict regex -->
@@ -201,9 +201,18 @@
             ]
           }
         }'></div>
-        <p>To find other forms in the <strong><span data-json-replace="#[pkg]/year"></span> package</strong>, return to the <a 
-          data-wb-json='{"url":"#[pkg]/href","type":"attr","attr":"href"}'>
+        <p id="pkg-cta" class="wb-inv">To find other forms in the <strong><span data-json-replace="#[pkg]/year"></span> package</strong>, return to the 
+          <a data-wb-json='{"url":"#[pkg]/href","type":"attr","attr":"href"}'>
           <span data-json-replace="#[pkg]/year"></span> Income tax package</a>.</p>
+        <div data-wb-urlmapping='{
+          "pkgyr": {
+            "action": "removeClass",
+            "source": "#pkg-cta",
+            "class": "wb-inv",
+            "match": "^(?:201[5-9]|202[0-9])$"
+          }
+        }'></div>
+
         <section class="pagedetails">
           <h2 class="wb-inv">Page details</h2>
           <div class="row">
