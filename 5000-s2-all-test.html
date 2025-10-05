@@ -91,7 +91,7 @@
 
 <!-- 1) Seed (default when no query param is present) -->
 <script type="application/json" id="pkg-seed">
-{ "year": "2024", "href": "archived-general-income-tax-benefit-package-2024.html" }
+{ "year": "2024", "href": "general-income-tax-benefit-package.html" }
 </script>
 
 <!-- 2) Publish dataset and wait for patches BEFORE anything reads it -->
@@ -103,7 +103,7 @@
        "debug": true
      }'></div>
 
-<!-- 3) Single URL-mapping using a unique key (pkgyr) with strict regex -->
+<!-- 3a) URL-mapping for ?pkgyr=YYYY: only sets /year -->
 <div data-wb-urlmapping='{
   "pkgyr": {
     "action": "patch",
@@ -111,23 +111,157 @@
     "match": "^[12][0-9]{3}$",
     "default": "2024",
     "patches": [
-      { "op": "replace", "path": "/year", "value": "{qval}" },
-      { "op": "replace", "path": "/href", "value": "archived-general-income-tax-benefit-package-{qval}.html" }
+      { "op": "replace", "path": "/year", "value": "{qval}" }
     ]
   }
 }'></div>
 
+<!-- 3b) URL-mapping for ?prov=xx : 2-letter → dashed full name -->
+<!-- Alberta -->
+<div data-wb-urlmapping='{
+  "prov": {
+    "action": "patch",
+    "source": "#pkg-json",
+    "match": "^ab$",
+    "patches": [{ "op": "replace", "path": "/href", "value": "{#[pkg]/year}-alberta.html" }]
+  }
+}'></div>
+
+<!-- British Columbia -->
+<div data-wb-urlmapping='{
+  "prov": {
+    "action": "patch",
+    "source": "#pkg-json",
+    "match": "^bc$",
+    "patches": [{ "op": "replace", "path": "/href", "value": "{#[pkg]/year}-british-columbia.html" }]
+  }
+}'></div>
+
+<!-- Manitoba -->
+<div data-wb-urlmapping='{
+  "prov": {
+    "action": "patch",
+    "source": "#pkg-json",
+    "match": "^mb$",
+    "patches": [{ "op": "replace", "path": "/href", "value": "{#[pkg]/year}-manitoba.html" }]
+  }
+}'></div>
+
+<!-- New Brunswick -->
+<div data-wb-urlmapping='{
+  "prov": {
+    "action": "patch",
+    "source": "#pkg-json",
+    "match": "^nb$",
+    "patches": [{ "op": "replace", "path": "/href", "value": "{#[pkg]/year}-new-brunswick.html" }]
+  }
+}'></div>
+
+<!-- Newfoundland and Labrador -->
+<div data-wb-urlmapping='{
+  "prov": {
+    "action": "patch",
+    "source": "#pkg-json",
+    "match": "^nl$",
+    "patches": [{ "op": "replace", "path": "/href", "value": "{#[pkg]/year}-newfoundland-and-labrador.html" }]
+  }
+}'></div>
+
+<!-- Nova Scotia -->
+<div data-wb-urlmapping='{
+  "prov": {
+    "action": "patch",
+    "source": "#pkg-json",
+    "match": "^ns$",
+    "patches": [{ "op": "replace", "path": "/href", "value": "{#[pkg]/year}-nova-scotia.html" }]
+  }
+}'></div>
+
+<!-- Northwest Territories -->
+<div data-wb-urlmapping='{
+  "prov": {
+    "action": "patch",
+    "source": "#pkg-json",
+    "match": "^nt$",
+    "patches": [{ "op": "replace", "path": "/href", "value": "{#[pkg]/year}-northwest-territories.html" }]
+  }
+}'></div>
+
+<!-- Nunavut -->
+<div data-wb-urlmapping='{
+  "prov": {
+    "action": "patch",
+    "source": "#pkg-json",
+    "match": "^nu$",
+    "patches": [{ "op": "replace", "path": "/href", "value": "{#[pkg]/year}-nunavut.html" }]
+  }
+}'></div>
+
+<!-- Ontario -->
+<div data-wb-urlmapping='{
+  "prov": {
+    "action": "patch",
+    "source": "#pkg-json",
+    "match": "^on$",
+    "patches": [{ "op": "replace", "path": "/href", "value": "{#[pkg]/year}-ontario.html" }]
+  }
+}'></div>
+
+<!-- Prince Edward Island -->
+<div data-wb-urlmapping='{
+  "prov": {
+    "action": "patch",
+    "source": "#pkg-json",
+    "match": "^pe$",
+    "patches": [{ "op": "replace", "path": "/href", "value": "{#[pkg]/year}-prince-edward-island.html" }]
+  }
+}'></div>
+
+<!-- Quebec -->
+<div data-wb-urlmapping='{
+  "prov": {
+    "action": "patch",
+    "source": "#pkg-json",
+    "match": "^qc$",
+    "patches": [{ "op": "replace", "path": "/href", "value": "{#[pkg]/year}-quebec.html" }]
+  }
+}'></div>
+
+<!-- Saskatchewan -->
+<div data-wb-urlmapping='{
+  "prov": {
+    "action": "patch",
+    "source": "#pkg-json",
+    "match": "^sk$",
+    "patches": [{ "op": "replace", "path": "/href", "value": "{#[pkg]/year}-saskatchewan.html" }]
+  }
+}'></div>
+
+<!-- Yukon -->
+<div data-wb-urlmapping='{
+  "prov": {
+    "action": "patch",
+    "source": "#pkg-json",
+    "match": "^yt$",
+    "patches": [{ "op": "replace", "path": "/href", "value": "{#[pkg]/year}-yukon.html" }]
+  }
+}'></div>
+
+
 <!-- 4) Render the link (reads from the dataset published above) -->
 <p class="small mrgn-tp-sm"><strong>You may be looking for:</strong>
-<a class="small"
-   data-wb-json='{"url":"#[pkg]/href","type":"attr","attr":"href"}'>
-  <span data-json-replace="#[pkg]/year"></span> Income tax package
-</a></p>
+  <a class="small"
+     data-wb-json='{"url":"#[pkg]/href","type":"attr","attr":"href"}'>
+    <span data-json-replace="#[pkg]/year"></span>
+    <span data-json-replace="#[pkg]/href" data-json-prefix=" - "></span>
+  </a>
+</p>
+
 
 <div class="clearfix" aria-hidden="true"></div>
 
         <!--PDF instructions-->
-        <!--<section id="instructions" class="mfp-hide modal-dialog modal-content overlay-def">
+        <section id="instructions" class="mfp-hide modal-dialog modal-content overlay-def">
           <header class="modal-header">
             <h2 class="modal-title">Download instructions for fillable PDFs</h2>
           </header>
@@ -144,7 +278,7 @@
               </ol>
             </section>
           </div>
-        </section>-->
+        </section>
         <!--Description-->
         <p class="mrgn-bttm-md">Description here... Description here... Description here... Description here...
           Description here... </p>
@@ -200,9 +334,9 @@
           </li>
         </ul>
         <!--Instructions-->
-        <!--<section
+        <section
           data-ajax-replace="https://www.canada.ca/content/canadasite/en/revenue-agency/services/forms-publications/forms/t5007/instructions.html#instr">
-        </section>-->
+        </section>
         <!--Prior year forms -->
         <h2 id="prvs-yrs">Available prior year versions</h2>
         <section data-ajax-replace="forms-table-script/results/5000-s2-table-e.htm"></section>
