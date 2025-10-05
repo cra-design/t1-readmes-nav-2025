@@ -104,13 +104,26 @@
 <!-- (B) Single mapping for ?year=… that PATCHES the dataset -->
 <div data-wb-urlmapping='{
   "year": {
-    "action": "patch",
-    "source": "#pkg-json",
     "match": "^[12][0-9]{3}$",
     "default": "2024",
-    "patches": [
-      { "op": "replace", "path": "/year", "value": "{qval}" },
-      { "op": "replace", "path": "/href", "value": "archived-general-income-tax-benefit-package-{qval}.html" }
+    "actions": [
+      {
+        "action": "patch",
+        "source": "#pkg-json",
+        "patches": [
+          { "op": "replace", "path": "/year", "value": "{qval}" },
+          { "op": "replace", "path": "/href",
+            "value": "archived-general-income-tax-benefit-package-{qval}.html" }
+        ]
+      },
+      {
+        "action": "tblfilter",
+        "source": "#year-filter",
+        "column": 0,
+        "value": "^{qval}$",
+        "regex": true,
+        "smart": false
+      }
     ]
   }
 }'></div>
