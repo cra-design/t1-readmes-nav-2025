@@ -1,5 +1,14 @@
 <div class="table-responsive">
-  <table class="wb-tables table filterEmphasis provisional table-striped table-condensed table-hover small" id="year-filter" aria-live="polite" 
+  <table class="wb-tables table filterEmphasis provisional table-striped table-condensed table-hover small" id="year-filter" aria-live="polite" data-wb-urlmapping='{
+            "year": {
+            "action": "tblfilter",
+            "source": "#year-filter",
+            "column": 0,
+            "value": "{qval}",
+            "match": "^[1-2][0-9][0-9][0-9]$",
+            "default": "2024"
+          }
+        }'
         data-wb-tables='{
           "ordering": true,
           "order": [[0, "desc"]],
