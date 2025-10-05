@@ -91,7 +91,7 @@
 
 <!-- 1) Seed (default when no query param is present) -->
 <script type="application/json" id="pkg-seed">
-{ "year": "2024", "href": "general-income-tax-benefit-package.html" }
+{ "year": "2024", "href": "archived-general-income-tax-benefit-package-2024.html" }
 </script>
 
 <!-- 2) Publish dataset and wait for patches BEFORE anything reads it -->
@@ -103,80 +103,26 @@
        "debug": true
      }'></div>
 
+<!-- 3) Single URL-mapping using a unique key (pkgyr) with strict regex -->
 <div data-wb-urlmapping='{
-  "prov": {
+  "pkgyr": {
     "action": "patch",
     "source": "#pkg-json",
-    "match": "^(ab|bc|mb|nb|nl|ns|nt|nu|on|pe|qc|sk|yt|nr)$",
-    "default": "",
+    "match": "^[12][0-9]{3}$",
+    "default": "2024",
     "patches": [
-      { "op": "add", "path": "/provCode", "value": "{qval}" }
+      { "op": "replace", "path": "/year", "value": "{qval}" },
+      { "op": "replace", "path": "/href", "value": "archived-general-income-tax-benefit-package-{qval}.html" }
     ]
   }
 }'></div>
 
-<script type="application/json" id="prov-lookup">
-{
-  "ab": "alberta",
-  "bc": "british-columbia",
-  "mb": "manitoba",
-  "nb": "new-brunswick",
-  "nl": "newfoundland-and-labrador",
-  "ns": "nova-scotia",
-  "nt": "northwest-territories",
-  "nu": "nunavut",
-  "on": "ontario",
-  "pe": "prince-edward-island",
-  "qc": "quebec",
-  "sk": "saskatchewan",
-  "yt": "yukon",
-  "nr": "non-resident"
-}
-</script>
-
-<script>
-  (function () {
-    // Wait for JSON manager to publish the dataset
-    $(document).one("wb-ready.wb-jsonmanager", function () {
-      try {
-        var pkg = window.wb && wb.getData && wb.getData({ name: "pkg" });
-        if (!pkg) return;
-
-        var provCode = (pkg.provCode || "").toLowerCase();
-        if (!provCode) return; // no province: keep generic href
-
-        // Read the lookup table embedded above
-        var provMapEl = document.getElementById("prov-lookup");
-        if (!provMapEl) return;
-        var provMap = JSON.parse(provMapEl.textContent || "{}");
-        var slug = provMap[provCode];
-        if (!slug) return; // unknown code: keep generic href
-
-        var yr = pkg.year || "2024";
-        var newHref = "/" + yr + "-" + slug + ".html";
-
-        // Patch the dataset in-place so your <a data-wb-json ...> sees it
-        pkg.href = newHref;
-
-        // If you want to update any already-rendered bindings, trigger WET refresh:
-        $(document).trigger("wb-update.wb-json", [{ json: pkg, name: "pkg" }]);
-      } catch (e) {
-        // Fail-safe: keep generic link
-        console.warn("Province mapping skipped:", e);
-      }
-    });
-  })();
-</script>
-
 <!-- 4) Render the link (reads from the dataset published above) -->
 <p class="small mrgn-tp-sm"><strong>You may be looking for:</strong>
-  <a class="small"
-     data-wb-json='{"url":"#[pkg]/href","type":"attr","attr":"href"}'>
-    <span data-json-replace="#[pkg]/year"></span>
-    <span data-json-replace="#[pkg]/href" data-json-prefix=" - "></span>
-  </a>
-</p>
-
+<a class="small"
+   data-wb-json='{"url":"#[pkg]/href","type":"attr","attr":"href"}'>
+  <span data-json-replace="#[pkg]/year"></span> Income tax package
+</a></p>
 
 <div class="clearfix" aria-hidden="true"></div>
 
