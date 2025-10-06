@@ -183,10 +183,11 @@
 
 <!-- Publish the dataset named "pkg" -->
 <div id="pkg-json"
-     data-wb-jsonmanager='{
-       "url": "#pkg-seed",
-       "name": "pkg"
-     }'></div>
+data-wb-jsonmanager='{
+    "url": "#pkg-seed",
+    "name": "pkg",
+    "wait": true
+  }'></div>
 
 <div data-wb-urlmapping='{
   "multiplequery": true,
@@ -268,25 +269,6 @@
   </p>
 {{/if}}
 </script>
-
-        <div  id="dnmc-rsc" class="wb-inv">
-          <p><mark>[Prototype note: The following link will take you outside the prototype.]</mark></p>
-          <p>To find other <span data-json-replace="#[pkg]/year"></span> forms you need, return to the <a 
-            data-wb-json='{"url":"#[pkg]/href","type":"attr","attr":"href"}'>
-            <span data-json-replace="#[pkg]/year"></span> Income tax package</a>.</p>
-        </div>
-        <div data-wb-urlmapping='{
-          "multiplequery": true,
-          "pkgyr": {
-            "action": "removeClass",
-            "source": "#dnmc-rsc",
-            "class": "wb-inv"
-          }
-        }'></div>
-
-
-
-
 
         <section class="pagedetails">
           <h2 class="wb-inv">Page details</h2>
