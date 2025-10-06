@@ -201,17 +201,18 @@
             ]
           }
         }'></div>
-        <p id="pkg-cta" class="wb-inv">To find other forms in the <strong><span data-json-replace="#[pkg]/year"></span> package</strong>, return to the 
-          <a data-wb-json='{"url":"#[pkg]/href","type":"attr","attr":"href"}'>
-          <span data-json-replace="#[pkg]/year"></span> Income tax package</a>.</p>
         <div data-wb-urlmapping='{
           "pkgyr": {
             "action": "removeClass",
-            "source": "#pkg-cta",
+            "source": "#dn-rsc",
             "class": "wb-inv",
-            "match": "^(?:201[5-9]|202[0-9])$"
+            "match": "^(?:2015|2016|2017|2018|2019|2020|2021|2022|2023)$",
           }
         }'></div>
+
+        <p id="dn-rsc" class="wb-inv">To find other forms in the <strong><span data-json-replace="#[pkg]/year"></span> package</strong>, return to the 
+          <a data-wb-json='{"url":"#[pkg]/href","type":"attr","attr":"href"}'>
+          <span data-json-replace="#[pkg]/year"></span> Income tax package</a>.</p>
 
         <section class="pagedetails">
           <h2 class="wb-inv">Page details</h2>
