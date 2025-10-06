@@ -193,6 +193,7 @@ data-wb-jsonmanager='{
   "multiplequery": true,
   "pkgyr": {
     "match": "^[1-2][0-9]{3}$",
+    "default": "",
     "action": "patch",
     "source": "#pkg-json",
     "patches": [
@@ -200,52 +201,53 @@ data-wb-jsonmanager='{
     ]
   }
 }'></div>
+
 <!-- Provinces -->
 <div data-wb-urlmapping='{
-  "prov": { "match": "^ab$", "action": "patch", "source": "#pkg-json",
+  "prov": { "match": "^ab$", "default": "", "action": "patch", "source": "#pkg-json",
     "patches": [{ "op":"replace","path":"/provSlug","value":"alberta"}] } }'></div>
 <div data-wb-urlmapping='{
-  "prov": { "match": "^bc$", "action": "patch", "source": "#pkg-json",
+  "prov": { "match": "^bc$", "default": "", "action": "patch", "source": "#pkg-json",
     "patches": [{ "op":"replace","path":"/provSlug","value":"british-columbia"}] } }'></div>
 <div data-wb-urlmapping='{
-  "prov": { "match": "^mb$", "action": "patch", "source": "#pkg-json",
+  "prov": { "match": "^mb$", "default": "", "action": "patch", "source": "#pkg-json",
     "patches": [{ "op":"replace","path":"/provSlug","value":"manitoba"}] } }'></div>
 <div data-wb-urlmapping='{
-  "prov": { "match": "^nb$", "action": "patch", "source": "#pkg-json",
+  "prov": { "match": "^nb$", "default": "", "action": "patch", "source": "#pkg-json",
     "patches": [{ "op":"replace","path":"/provSlug","value":"new-brunswick"}] } }'></div>
 <div data-wb-urlmapping='{
-  "prov": { "match": "^nl$", "action": "patch", "source": "#pkg-json",
+  "prov": { "match": "^nl$", "default": "", "action": "patch", "source": "#pkg-json",
     "patches": [{ "op":"replace","path":"/provSlug","value":"newfoundland-labrador"}] } }'></div>
 <div data-wb-urlmapping='{
-  "prov": { "match": "^ns$", "action": "patch", "source": "#pkg-json",
+  "prov": { "match": "^ns$", "default": "", "action": "patch", "source": "#pkg-json",
     "patches": [{ "op":"replace","path":"/provSlug","value":"nova-scotia"}] } }'></div>
 <div data-wb-urlmapping='{
-  "prov": { "match": "^on$", "action": "patch", "source": "#pkg-json",
+  "prov": { "match": "^on$", "default": "", "action": "patch", "source": "#pkg-json",
     "patches": [{ "op":"replace","path":"/provSlug","value":"ontario"}] } }'></div>
 <div data-wb-urlmapping='{
-  "prov": { "match": "^pe$", "action": "patch", "source": "#pkg-json",
+  "prov": { "match": "^pe$", "default": "", "action": "patch", "source": "#pkg-json",
     "patches": [{ "op":"replace","path":"/provSlug","value":"prince-edward-island"}] } }'></div>
 <div data-wb-urlmapping='{
-  "prov": { "match": "^qc$", "action": "patch", "source": "#pkg-json",
+  "prov": { "match": "^qc$", "default": "", "action": "patch", "source": "#pkg-json",
     "patches": [{ "op":"replace","path":"/provSlug","value":"quebec"}] } }'></div>
 <div data-wb-urlmapping='{
-  "prov": { "match": "^sk$", "action": "patch", "source": "#pkg-json",
+  "prov": { "match": "^sk$", "default": "", "action": "patch", "source": "#pkg-json",
     "patches": [{ "op":"replace","path":"/provSlug","value":"saskatchewan"}] } }'></div>
 
 <!-- Territories -->
 <div data-wb-urlmapping='{
-  "prov": { "match": "^nt$", "action": "patch", "source": "#pkg-json",
+  "prov": { "match": "^nt$", "default": "", "action": "patch", "source": "#pkg-json",
     "patches": [{ "op":"replace","path":"/provSlug","value":"northwest-territories"}] } }'></div>
 <div data-wb-urlmapping='{
-  "prov": { "match": "^nu$", "action": "patch", "source": "#pkg-json",
+  "prov": { "match": "^nu$", "default": "", "action": "patch", "source": "#pkg-json",
     "patches": [{ "op":"replace","path":"/provSlug","value":"nunavut"}] } }'></div>
 <div data-wb-urlmapping='{
-  "prov": { "match": "^yt$", "action": "patch", "source": "#pkg-json",
+  "prov": { "match": "^yt$", "default": "", "action": "patch", "source": "#pkg-json",
     "patches": [{ "op":"replace","path":"/provSlug","value":"yukon"}] } }'></div>
 
 <!-- Non-Residents -->
 <div data-wb-urlmapping='{
-  "prov": { "match": "^nr$", "action": "patch", "source": "#pkg-json",
+  "prov": { "match": "^nr$", "default": "", "action": "patch", "source": "#pkg-json",
     "patches": [{ "op":"replace","path":"/provSlug","value":"non-residents"}] } }'></div>
 
 <!-- Where the sentence should appear -->
