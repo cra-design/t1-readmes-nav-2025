@@ -174,33 +174,101 @@
         <section data-ajax-replace="forms-table-script/results/5000-s2-table-e.htm"></section>
         <p class="mrgn-tp-lg">This page includes versions from the last 10 years. For older versions, find <a href="https://webarchiveweb.wayback.bac-lac.canada.ca/web/20250403094844/https:/www.canada.ca/en/revenue-agency/services/forms-publications/tax-packages-years.html">past personal income tax packages preserved by Library and Archives Canada</a> within the Government of Canada Web Archive.</p>
         
-        <!-- 1) Seed (default when no query param is present) -->
-        <script type="application/json" id="pkg-seed">
-        { "year": "2024", "href": "https://www.canada.ca/en/revenue-agency/services/forms-publications/tax-packages-years/general-income-tax-benefit-package.html" }
-        </script>
+<script type="application/json" id="pkg-seed">
+{
+  "pkgyr": "",
+  "provSlug": ""
+}
+</script>
 
-        <!-- 2) Publish dataset and wait for patches BEFORE anything reads it -->
-        <div id="pkg-json" class="wb-inv"
-            data-wb-jsonmanager='{
-              "url": "#pkg-seed",
-              "name": "pkg",
-              "wait": true,
-              "debug": false
-            }'></div>
+<!-- Publish the dataset named "pkg" -->
+<div id="pkg-json"
+     data-wb-jsonmanager='{
+       "url": "#pkg-seed",
+       "name": "pkg"
+     }'></div>
 
-        <!-- 3) Single URL-mapping using a unique key (pkgyr) with strict regex -->
-        <div data-wb-urlmapping='{
-          "pkgyr": {
-            "action": "patch",
-            "source": "#pkg-json",
-            "match": "^(?:2016|2017|2018|2019|2020|2021|2022|2023)$",
-            "default": "2024",
-            "patches": [
-              { "op": "replace", "path": "/year", "value": "{qval}" },
-              { "op": "replace", "path": "/href", "value": "https://www.canada.ca/en/revenue-agency/services/forms-publications/tax-packages-years/archived-general-income-tax-benefit-package-{qval}.html" }
-            ]
-          }
-        }'></div>
+<div data-wb-urlmapping='{
+  "multiplequery": true,
+  "pkgyr": {
+    "match": "^[1-2][0-9]{3}$",
+    "action": "patch",
+    "source": "#pkg-json",
+    "patches": [
+      { "op": "replace", "path": "/pkgyr", "value": "{qval}" }
+    ]
+  }
+}'></div>
+<!-- Provinces -->
+<div data-wb-urlmapping='{
+  "prov": { "match": "^ab$", "action": "patch", "source": "#pkg-json",
+    "patches": [{ "op":"replace","path":"/provSlug","value":"alberta"}] } }'></div>
+<div data-wb-urlmapping='{
+  "prov": { "match": "^bc$", "action": "patch", "source": "#pkg-json",
+    "patches": [{ "op":"replace","path":"/provSlug","value":"british-columbia"}] } }'></div>
+<div data-wb-urlmapping='{
+  "prov": { "match": "^mb$", "action": "patch", "source": "#pkg-json",
+    "patches": [{ "op":"replace","path":"/provSlug","value":"manitoba"}] } }'></div>
+<div data-wb-urlmapping='{
+  "prov": { "match": "^nb$", "action": "patch", "source": "#pkg-json",
+    "patches": [{ "op":"replace","path":"/provSlug","value":"new-brunswick"}] } }'></div>
+<div data-wb-urlmapping='{
+  "prov": { "match": "^nl$", "action": "patch", "source": "#pkg-json",
+    "patches": [{ "op":"replace","path":"/provSlug","value":"newfoundland-labrador"}] } }'></div>
+<div data-wb-urlmapping='{
+  "prov": { "match": "^ns$", "action": "patch", "source": "#pkg-json",
+    "patches": [{ "op":"replace","path":"/provSlug","value":"nova-scotia"}] } }'></div>
+<div data-wb-urlmapping='{
+  "prov": { "match": "^on$", "action": "patch", "source": "#pkg-json",
+    "patches": [{ "op":"replace","path":"/provSlug","value":"ontario"}] } }'></div>
+<div data-wb-urlmapping='{
+  "prov": { "match": "^pe$", "action": "patch", "source": "#pkg-json",
+    "patches": [{ "op":"replace","path":"/provSlug","value":"prince-edward-island"}] } }'></div>
+<div data-wb-urlmapping='{
+  "prov": { "match": "^qc$", "action": "patch", "source": "#pkg-json",
+    "patches": [{ "op":"replace","path":"/provSlug","value":"quebec"}] } }'></div>
+<div data-wb-urlmapping='{
+  "prov": { "match": "^sk$", "action": "patch", "source": "#pkg-json",
+    "patches": [{ "op":"replace","path":"/provSlug","value":"saskatchewan"}] } }'></div>
+
+<!-- Territories -->
+<div data-wb-urlmapping='{
+  "prov": { "match": "^nt$", "action": "patch", "source": "#pkg-json",
+    "patches": [{ "op":"replace","path":"/provSlug","value":"northwest-territories"}] } }'></div>
+<div data-wb-urlmapping='{
+  "prov": { "match": "^nu$", "action": "patch", "source": "#pkg-json",
+    "patches": [{ "op":"replace","path":"/provSlug","value":"nunavut"}] } }'></div>
+<div data-wb-urlmapping='{
+  "prov": { "match": "^yt$", "action": "patch", "source": "#pkg-json",
+    "patches": [{ "op":"replace","path":"/provSlug","value":"yukon"}] } }'></div>
+
+<!-- Non-Residents -->
+<div data-wb-urlmapping='{
+  "prov": { "match": "^nr$", "action": "patch", "source": "#pkg-json",
+    "patches": [{ "op":"replace","path":"/provSlug","value":"non-residents"}] } }'></div>
+
+<!-- Where the sentence should appear -->
+<div data-wb-json='{"url":"#[pkg]"}'
+     data-wb-tmpl='{"template":"#resc-tmpl"}'></div>
+
+<script type="text/x-jsrender" id="resc-tmpl">
+{{if pkgyr}}
+  <p><mark>[Prototype note: The following link will take you outside the prototype.]</mark></p>
+    {{if provSlug && provSlug.length}}
+      <p>To find other {{:pkgyr}} forms you may need for {{:provSlug}}, return to the
+      <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/tax-packages-years/archived-general-income-tax-benefit-package-{{:pkgyr}}/{{:provSlug}}.html">
+        Income tax package
+      </a>.
+    {{else}}
+      <p>To find other {{:pkgyr}} forms you may need, return to the
+      <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/tax-packages-years/archived-general-income-tax-benefit-package-{{:pkgyr}}.html">
+        Income tax package
+      </a>.
+    {{/if}}
+  </p>
+{{/if}}
+</script>
+
         <div  id="dnmc-rsc" class="wb-inv">
           <p><mark>[Prototype note: The following link will take you outside the prototype.]</mark></p>
           <p>To find other <span data-json-replace="#[pkg]/year"></span> forms you need, return to the <a 
@@ -215,6 +283,11 @@
             "class": "wb-inv"
           }
         }'></div>
+
+
+
+
+
         <section class="pagedetails">
           <h2 class="wb-inv">Page details</h2>
           <div class="row">
