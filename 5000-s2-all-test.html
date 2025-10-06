@@ -201,9 +201,17 @@
             ]
           }
         }'></div>
-        <p>To find other forms in the <strong><span data-json-replace="#[pkg]/year"></span> package</strong>, return to the <a 
+        <p id="dnmc-rsc" class="wb-inv">To find other forms in the <span data-json-replace="#[pkg]/year"></span> package, return to the <a 
           data-wb-json='{"url":"#[pkg]/href","type":"attr","attr":"href"}'>
           <span data-json-replace="#[pkg]/year"></span> Income tax package</a>.</p>
+        <div data-wb-urlmapping='{
+          "multiplequery": true,
+          "pkgyr": {
+            "action": "removeClass",
+            "source": "#pkg-cta",
+            "class": "wb-inv"
+          }
+        }'></div>
         <section class="pagedetails">
           <h2 class="wb-inv">Page details</h2>
           <div class="row">
