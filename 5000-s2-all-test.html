@@ -171,9 +171,8 @@
         </section>-->
         <!--Prior year forms -->
         <h2 id="prvs-yrs">Available prior year versions</h2>
-        <section data-ajax-replace="forms-table-script/results/5000-s2-table-e.htm"></section>
-        <p class="mrgn-tp-lg">This page includes versions from the last 10 years. For older versions, find <a href="https://webarchiveweb.wayback.bac-lac.canada.ca/web/20250403094844/https:/www.canada.ca/en/revenue-agency/services/forms-publications/tax-packages-years.html">past personal income tax packages preserved by Library and Archives Canada</a> within the Government of Canada Web Archive.</p>
-        
+
+                
 <script type="application/json" id="pkg-seed">
 {
   "pkgyr": "",
@@ -192,63 +191,29 @@ data-wb-jsonmanager='{
 <div data-wb-urlmapping='{
   "multiplequery": true,
   "pkgyr": {
-    "match": "^[1-2][0-9]{3}$",
+    "match": "^(?:2016|2017|2018|2019|2020|2021|2022|2023)$",
     "default": "",
     "action": "patch",
     "source": "#pkg-json",
-    "patches": [
-      { "op": "replace", "path": "/pkgyr", "value": "{qval}" }
-    ]
+    "patches": [{ "op":"replace","path":"/pkgyr","value":"{qval}"}]
+  },
+  "prov": {
+    "match": "^(?:ab|bc|mb|nb|nl|ns|on|pe|qc|sk|nt|nu|yt|nr)$",
+    "default": "",
+    "action": "patch",
+    "source": "#pkg-json",
+    "patches": [{ "op":"replace","path":"/provSlug","value":"{val}"}],
+    "map": {
+      "ab":"alberta","bc":"british-columbia","mb":"manitoba","nb":"new-brunswick",
+      "nl":"newfoundland-labrador","ns":"nova-scotia","on":"ontario","pe":"prince-edward-island",
+      "qc":"quebec","sk":"saskatchewan","nt":"northwest-territories","nu":"nunavut",
+      "yt":"yukon","nr":"non-residents"
+    }
   }
 }'></div>
 
-<!-- Provinces -->
-<div data-wb-urlmapping='{
-  "prov": { "match": "^ab$", "default": "", "action": "patch", "source": "#pkg-json",
-    "patches": [{ "op":"replace","path":"/provSlug","value":"alberta"}] } }'></div>
-<div data-wb-urlmapping='{
-  "prov": { "match": "^bc$", "default": "", "action": "patch", "source": "#pkg-json",
-    "patches": [{ "op":"replace","path":"/provSlug","value":"british-columbia"}] } }'></div>
-<div data-wb-urlmapping='{
-  "prov": { "match": "^mb$", "default": "", "action": "patch", "source": "#pkg-json",
-    "patches": [{ "op":"replace","path":"/provSlug","value":"manitoba"}] } }'></div>
-<div data-wb-urlmapping='{
-  "prov": { "match": "^nb$", "default": "", "action": "patch", "source": "#pkg-json",
-    "patches": [{ "op":"replace","path":"/provSlug","value":"new-brunswick"}] } }'></div>
-<div data-wb-urlmapping='{
-  "prov": { "match": "^nl$", "default": "", "action": "patch", "source": "#pkg-json",
-    "patches": [{ "op":"replace","path":"/provSlug","value":"newfoundland-labrador"}] } }'></div>
-<div data-wb-urlmapping='{
-  "prov": { "match": "^ns$", "default": "", "action": "patch", "source": "#pkg-json",
-    "patches": [{ "op":"replace","path":"/provSlug","value":"nova-scotia"}] } }'></div>
-<div data-wb-urlmapping='{
-  "prov": { "match": "^on$", "default": "", "action": "patch", "source": "#pkg-json",
-    "patches": [{ "op":"replace","path":"/provSlug","value":"ontario"}] } }'></div>
-<div data-wb-urlmapping='{
-  "prov": { "match": "^pe$", "default": "", "action": "patch", "source": "#pkg-json",
-    "patches": [{ "op":"replace","path":"/provSlug","value":"prince-edward-island"}] } }'></div>
-<div data-wb-urlmapping='{
-  "prov": { "match": "^qc$", "default": "", "action": "patch", "source": "#pkg-json",
-    "patches": [{ "op":"replace","path":"/provSlug","value":"quebec"}] } }'></div>
-<div data-wb-urlmapping='{
-  "prov": { "match": "^sk$", "default": "", "action": "patch", "source": "#pkg-json",
-    "patches": [{ "op":"replace","path":"/provSlug","value":"saskatchewan"}] } }'></div>
-
-<!-- Territories -->
-<div data-wb-urlmapping='{
-  "prov": { "match": "^nt$", "default": "", "action": "patch", "source": "#pkg-json",
-    "patches": [{ "op":"replace","path":"/provSlug","value":"northwest-territories"}] } }'></div>
-<div data-wb-urlmapping='{
-  "prov": { "match": "^nu$", "default": "", "action": "patch", "source": "#pkg-json",
-    "patches": [{ "op":"replace","path":"/provSlug","value":"nunavut"}] } }'></div>
-<div data-wb-urlmapping='{
-  "prov": { "match": "^yt$", "default": "", "action": "patch", "source": "#pkg-json",
-    "patches": [{ "op":"replace","path":"/provSlug","value":"yukon"}] } }'></div>
-
-<!-- Non-Residents -->
-<div data-wb-urlmapping='{
-  "prov": { "match": "^nr$", "default": "", "action": "patch", "source": "#pkg-json",
-    "patches": [{ "op":"replace","path":"/provSlug","value":"non-residents"}] } }'></div>
+        <section data-ajax-replace="forms-table-script/results/5000-s2-table-e.htm"></section>
+        <p class="mrgn-tp-lg">This page includes versions from the last 10 years. For older versions, find <a href="https://webarchiveweb.wayback.bac-lac.canada.ca/web/20250403094844/https:/www.canada.ca/en/revenue-agency/services/forms-publications/tax-packages-years.html">past personal income tax packages preserved by Library and Archives Canada</a> within the Government of Canada Web Archive.</p>
 
 <!-- Where the sentence should appear -->
 <div data-wb-json='{"url":"#[pkg]"}'
