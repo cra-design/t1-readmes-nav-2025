@@ -176,7 +176,7 @@
         
         <!-- 1) Seed (default when no query param is present) -->
         <script type="application/json" id="pkg-seed">
-        { "year": "2024", "href": "general-income-tax-benefit-package.html" }
+        { "year": "2024", "href": "https://www.canada.ca/en/revenue-agency/services/forms-publications/tax-packages-years/general-income-tax-benefit-package.html" }
         </script>
 
         <!-- 2) Publish dataset and wait for patches BEFORE anything reads it -->
@@ -193,18 +193,23 @@
           "pkgyr": {
             "action": "patch",
             "source": "#pkg-json",
-            "match": "^(?:2015|2016|2017|2018|2019|2020|2021|2022|2023)$",
+            "match": "^(?:2016|2017|2018|2019|2020|2021|2022|2023)$",
             "default": "2024",
             "patches": [
               { "op": "replace", "path": "/year", "value": "{qval}" },
-              { "op": "replace", "path": "/href", "value": "archived-general-income-tax-benefit-package-{qval}.html" }
+              { "op": "replace", "path": "/href", "value": "https://www.canada.ca/en/revenue-agency/services/forms-publications/tax-packages-years/archived-general-income-tax-benefit-package-{qval}.html" }
             ]
           }
         }'></div>
-        <p id="dnmc-rsc" class="wb-inv">To find other <span data-json-replace="#[pkg]/year"></span> forms you need, return to the <a 
-          data-wb-json='{"url":"#[pkg]/href","type":"attr","attr":"href"}'>
-          <span data-json-replace="#[pkg]/year"></span> Income tax package</a>.</p>
+        <div  id="dnmc-rsc" class="wb-inv">
+          <p><mark>[The following link takes you outside the prototype.]</mark>/p>
+          <p>To find other <span data-json-replace="#[pkg]/year"></span> forms you need, return to the <a 
+            data-wb-json='{"url":"#[pkg]/href","type":"attr","attr":"href"}'>
+            <span data-json-replace="#[pkg]/year"></span> Income tax package</a>.</p>
+        </div>
         <div data-wb-urlmapping='{
+        </div>
+ 
           "multiplequery": true,
           "pkgyr": {
             "action": "removeClass",
