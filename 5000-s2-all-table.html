@@ -171,48 +171,12 @@
         </section>
         <!--Prior year forms -->
         <h2 id="prvs-yrs">Available prior year versions</h2>
+        
         <section data-ajax-replace="forms-table-script/results/5000-s2-table-e.htm"></section>
         <section data-ajax-replace="includes/clear-filter-button.htm#filter-button-en"></section>
         <section data-ajax-replace="includes/t1-goc-archive-text.htm#archive-text-en"></section>
-        <!-- 1) Seed (default when no query param is present) -->
-        <script type="application/json" id="pkg-seed">
-        { "year": "2024", "href": "general-income-tax-benefit-package.html" }
-        </script>
+        <section data-ajax-replace="includes/package-rescue.htm#rescue-en"></section>
 
-        <!-- 2) Publish dataset and wait for patches BEFORE anything reads it -->
-        <div id="pkg-json" class="wb-inv"
-            data-wb-jsonmanager='{
-              "url": "#pkg-seed",
-              "name": "pkg",
-              "wait": true,
-              "debug": false
-            }'></div>
-
-        <!-- 3) Single URL-mapping using a unique key (pkgyr) with strict regex -->
-        <div data-wb-urlmapping='{
-          "pkgyr": {
-            "action": "patch",
-            "source": "#pkg-json",
-            "match": "^(?:2015|2016|2017|2018|2019|2020|2021|2022|2023)$",
-            "default": "2024",
-            "patches": [
-              { "op": "replace", "path": "/year", "value": "{qval}" },
-              { "op": "replace", "path": "/href", "value": "archived-general-income-tax-benefit-package-{qval}.html" }
-            ]
-          }
-        }'></div>
-        <p id="dnmc-rsc" class="wb-inv">To find other <span data-json-replace="#[pkg]/year"></span> forms you may need, return to the <a 
-          data-wb-json='{"url":"#[pkg]/href","type":"attr","attr":"href"}'>
-          <span data-json-replace="#[pkg]/year"></span> Income tax package</a>.</p>
-        <div data-wb-urlmapping='{
-          "multiplequery": true,
-          "pkgyr": {
-            "action": "removeClass",
-            "source": "#dnmc-rsc",
-            "class": "wb-inv"
-          }
-        }'></div>
-        
         <section class="pagedetails">
           <h2 class="wb-inv">Page details</h2>
           <div class="row">
