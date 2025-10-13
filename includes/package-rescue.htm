@@ -1,10 +1,8 @@
 <section id="rescue-en">
-  <!-- 1) Seed: year + generic (year-level) link -->
+  <!-- 1) Base year dataset (keeps your working behaviour) -->
   <script type="application/json" id="pkg-seed">
     { "year": "2024", "href": "general-income-tax-benefit-package.html" }
   </script>
-
-  <!-- 2) Publish the main dataset -->
   <div id="pkg-json" class="wb-inv"
        data-wb-jsonmanager='{
          "url": "#pkg-seed",
@@ -12,8 +10,6 @@
          "wait": true,
          "debug": false
        }'></div>
-
-  <!-- 3) Map ?pkgyr=YYYY into the dataset (drives year text + generic href) -->
   <div data-wb-urlmapping='{
     "pkgyr": {
       "action": "patch",
@@ -27,26 +23,48 @@
     }
   }'></div>
 
-  <!-- 4) Sentence -->
+  <!-- 2) Sentence with generic link + province-specific variants (hidden by default) -->
   <p id="dnmc-rsc" class="wb-inv">
     To find other <span data-json-replace="#[pkg]/year"></span> forms or guides you may need
-    <span id="for-prov-mb" class="wb-inv"> for Manitoba</span>,
+    <!-- Province name fragments (hidden until prov=xx) -->
+    <span id="for-prov-ab" class="wb-inv"> for Alberta</span>
+    <span id="for-prov-bc" class="wb-inv"> for British Columbia</span>
+    <span id="for-prov-mb" class="wb-inv"> for Manitoba</span>
+    <span id="for-prov-nb" class="wb-inv"> for New Brunswick</span>
+    <span id="for-prov-nl" class="wb-inv"> for Newfoundland and Labrador</span>
+    <span id="for-prov-ns" class="wb-inv"> for Nova Scotia</span>
+    <span id="for-prov-nt" class="wb-inv"> for Northwest Territories</span>
+    <span id="for-prov-nu" class="wb-inv"> for Nunavut</span>
+    <span id="for-prov-on" class="wb-inv"> for Ontario</span>
+    <span id="for-prov-pe" class="wb-inv"> for Prince Edward Island</span>
+    <span id="for-prov-qc" class="wb-inv"> for Quebec</span>
+    <span id="for-prov-sk" class="wb-inv"> for Saskatchewan</span>
+    <span id="for-prov-yt" class="wb-inv"> for Yukon</span>
+    <span id="for-prov-nr" class="wb-inv"> for non-residents</span>,
     return to the
-
-    <!-- Generic year-level link (visible unless a province-specific one is shown) -->
+    <!-- Generic year-level link (default) -->
     <a id="pkg-link-generic"
        data-wb-json='{"url":"#[pkg]/href","type":"attr","attr":"href"}'>
       <span data-json-replace="#[pkg]/year"></span> Income tax package
     </a>
-
-    <!-- Manitoba-specific link (hidden by default; shown when prov=mb) -->
-    <a id="pkg-link-mb" class="wb-inv"
-       data-wb-json='{"url":"#[pkg_mb]/href","type":"attr","attr":"href"}'>
-      <span data-json-replace="#[pkg]/year"></span> Income tax package for Manitoba
-    </a>.
+    <!-- Province-specific links (hidden until prov=xx) -->
+    <a id="pkg-link-ab" class="wb-inv" data-wb-json='{"url":"#[pkg_ab]/href","type":"attr","attr":"href"}'><span data-json-replace="#[pkg]/year"></span> Income tax package for Alberta</a>
+    <a id="pkg-link-bc" class="wb-inv" data-wb-json='{"url":"#[pkg_bc]/href","type":"attr","attr":"href"}'><span data-json-replace="#[pkg]/year"></span> Income tax package for British Columbia</a>
+    <a id="pkg-link-mb" class="wb-inv" data-wb-json='{"url":"#[pkg_mb]/href","type":"attr","attr":"href"}'><span data-json-replace="#[pkg]/year"></span> Income tax package for Manitoba</a>
+    <a id="pkg-link-nb" class="wb-inv" data-wb-json='{"url":"#[pkg_nb]/href","type":"attr","attr":"href"}'><span data-json-replace="#[pkg]/year"></span> Income tax package for New Brunswick</a>
+    <a id="pkg-link-nl" class="wb-inv" data-wb-json='{"url":"#[pkg_nl]/href","type":"attr","attr":"href"}'><span data-json-replace="#[pkg]/year"></span> Income tax package for Newfoundland and Labrador</a>
+    <a id="pkg-link-ns" class="wb-inv" data-wb-json='{"url":"#[pkg_ns]/href","type":"attr","attr":"href"}'><span data-json-replace="#[pkg]/year"></span> Income tax package for Nova Scotia</a>
+    <a id="pkg-link-nt" class="wb-inv" data-wb-json='{"url":"#[pkg_nt]/href","type":"attr","attr":"href"}'><span data-json-replace="#[pkg]/year"></span> Income tax package for Northwest Territories</a>
+    <a id="pkg-link-nu" class="wb-inv" data-wb-json='{"url":"#[pkg_nu]/href","type":"attr","attr":"href"}'><span data-json-replace="#[pkg]/year"></span> Income tax package for Nunavut</a>
+    <a id="pkg-link-on" class="wb-inv" data-wb-json='{"url":"#[pkg_on]/href","type":"attr","attr":"href"}'><span data-json-replace="#[pkg]/year"></span> Income tax package for Ontario</a>
+    <a id="pkg-link-pe" class="wb-inv" data-wb-json='{"url":"#[pkg_pe]/href","type":"attr","attr":"href"}'><span data-json-replace="#[pkg]/year"></span> Income tax package for Prince Edward Island</a>
+    <a id="pkg-link-qc" class="wb-inv" data-wb-json='{"url":"#[pkg_qc]/href","type":"attr","attr":"href"}'><span data-json-replace="#[pkg]/year"></span> Income tax package for Quebec</a>
+    <a id="pkg-link-sk" class="wb-inv" data-wb-json='{"url":"#[pkg_sk]/href","type":"attr","attr":"href"}'><span data-json-replace="#[pkg]/year"></span> Income tax package for Saskatchewan</a>
+    <a id="pkg-link-yt" class="wb-inv" data-wb-json='{"url":"#[pkg_yt]/href","type":"attr","attr":"href"}'><span data-json-replace="#[pkg]/year"></span> Income tax package for Yukon</a>
+    <a id="pkg-link-nr" class="wb-inv" data-wb-json='{"url":"#[pkg_nr]/href","type":"attr","attr":"href"}'><span data-json-replace="#[pkg]/year"></span> Income tax package for non-residents</a>.
   </p>
 
-  <!-- 5) Show the sentence whenever ?pkgyr= is present (your original behaviour) -->
+  <!-- 3) Show sentence when pkgyr is present -->
   <div data-wb-urlmapping='{
     "multiplequery": true,
     "pkgyr": {
@@ -56,35 +74,123 @@
     }
   }'></div>
 
-  <!-- 6) Manitoba dataset (its href is built only from ?pkgyr=) -->
-  <script type="application/json" id="pkg-mb-seed">
-    { "href": "general-income-tax-benefit-package/manitoba.html" }
-  </script>
-  <div id="pkg-mb-json" class="wb-inv"
-       data-wb-jsonmanager='{
-         "url": "#pkg-mb-seed",
-         "name": "pkg_mb",
-         "wait": true
-       }'></div>
-  <div data-wb-urlmapping='{
-    "pkgyr": {
-      "action": "patch",
-      "source": "#pkg-mb-json",
-      "match": "^(?:2016|2017|2018|2019|2020|2021|2022|2023|2024)$",
-      "default": "2024",
-      "patches": [
-        { "op": "replace", "path": "/href", "value": "archived-general-income-tax-benefit-package-{qval}/manitoba.html" }
-      ]
-    }
-  }'></div>
+  <!-- 4) Province datasets (seed + build href from pkgyr) -->
+  <!-- AB -->
+  <script type="application/json" id="pkg-ab-seed">{ "href": "general-income-tax-benefit-package/alberta.html" }</script>
+  <div id="pkg-ab-json" class="wb-inv" data-wb-jsonmanager='{"url":"#pkg-ab-seed","name":"pkg_ab","wait": true}'></div>
+  <div data-wb-urlmapping='{"pkgyr":{"action":"patch","source":"#pkg-ab-json","match":"^(?:2016|2017|2018|2019|2020|2021|2022|2023|2024)$","default":"2024","patches":[{"op":"replace","path":"/href","value":"archived-general-income-tax-benefit-package-{qval}/alberta.html"}]}}'></div>
+  <!-- BC -->
+  <script type="application/json" id="pkg-bc-seed">{ "href": "general-income-tax-benefit-package/british-columbia.html" }</script>
+  <div id="pkg-bc-json" class="wb-inv" data-wb-jsonmanager='{"url":"#pkg-bc-seed","name":"pkg_bc","wait": true}'></div>
+  <div data-wb-urlmapping='{"pkgyr":{"action":"patch","source":"#pkg-bc-json","match":"^(?:2016|2017|2018|2019|2020|2021|2022|2023|2024)$","default":"2024","patches":[{"op":"replace","path":"/href","value":"archived-general-income-tax-benefit-package-{qval}/british-columbia.html"}]}}'></div>
+  <!-- MB -->
+  <script type="application/json" id="pkg-mb-seed">{ "href": "general-income-tax-benefit-package/manitoba.html" }</script>
+  <div id="pkg-mb-json" class="wb-inv" data-wb-jsonmanager='{"url":"#pkg-mb-seed","name":"pkg_mb","wait": true}'></div>
+  <div data-wb-urlmapping='{"pkgyr":{"action":"patch","source":"#pkg-mb-json","match":"^(?:2016|2017|2018|2019|2020|2021|2022|2023|2024)$","default":"2024","patches":[{"op":"replace","path":"/href","value":"archived-general-income-tax-benefit-package-{qval}/manitoba.html"}]}}'></div>
+  <!-- NB -->
+  <script type="application/json" id="pkg-nb-seed">{ "href": "general-income-tax-benefit-package/new-brunswick.html" }</script>
+  <div id="pkg-nb-json" class="wb-inv" data-wb-jsonmanager='{"url":"#pkg-nb-seed","name":"pkg_nb","wait": true}'></div>
+  <div data-wb-urlmapping='{"pkgyr":{"action":"patch","source":"#pkg-nb-json","match":"^(?:2016|2017|2018|2019|2020|2021|2022|2023|2024)$","default":"2024","patches":[{"op":"replace","path":"/href","value":"archived-general-income-tax-benefit-package-{qval}/new-brunswick.html"}]}}'></div>
+  <!-- NL -->
+  <script type="application/json" id="pkg-nl-seed">{ "href": "general-income-tax-benefit-package/newfoundland-and-labrador.html" }</script>
+  <div id="pkg-nl-json" class="wb-inv" data-wb-jsonmanager='{"url":"#pkg-nl-seed","name":"pkg_nl","wait": true}'></div>
+  <div data-wb-urlmapping='{"pkgyr":{"action":"patch","source":"#pkg-nl-json","match":"^(?:2016|2017|2018|2019|2020|2021|2022|2023|2024)$","default":"2024","patches":[{"op":"replace","path":"/href","value":"archived-general-income-tax-benefit-package-{qval}/newfoundland-and-labrador.html"}]}}'></div>
+  <!-- NS -->
+  <script type="application/json" id="pkg-ns-seed">{ "href": "general-income-tax-benefit-package/nova-scotia.html" }</script>
+  <div id="pkg-ns-json" class="wb-inv" data-wb-jsonmanager='{"url":"#pkg-ns-seed","name":"pkg_ns","wait": true}'></div>
+  <div data-wb-urlmapping='{"pkgyr":{"action":"patch","source":"#pkg-ns-json","match":"^(?:2016|2017|2018|2019|2020|2021|2022|2023|2024)$","default":"2024","patches":[{"op":"replace","path":"/href","value":"archived-general-income-tax-benefit-package-{qval}/nova-scotia.html"}]}}'></div>
+  <!-- NT -->
+  <script type="application/json" id="pkg-nt-seed">{ "href": "general-income-tax-benefit-package/northwest-territories.html" }</script>
+  <div id="pkg-nt-json" class="wb-inv" data-wb-jsonmanager='{"url":"#pkg-nt-seed","name":"pkg_nt","wait": true}'></div>
+  <div data-wb-urlmapping='{"pkgyr":{"action":"patch","source":"#pkg-nt-json","match":"^(?:2016|2017|2018|2019|2020|2021|2022|2023|2024)$","default":"2024","patches":[{"op":"replace","path":"/href","value":"archived-general-income-tax-benefit-package-{qval}/northwest-territories.html"}]}}'></div>
+  <!-- NU -->
+  <script type="application/json" id="pkg-nu-seed">{ "href": "general-income-tax-benefit-package/nunavut.html" }</script>
+  <div id="pkg-nu-json" class="wb-inv" data-wb-jsonmanager='{"url":"#pkg-nu-seed","name":"pkg_nu","wait": true}'></div>
+  <div data-wb-urlmapping='{"pkgyr":{"action":"patch","source":"#pkg-nu-json","match":"^(?:2016|2017|2018|2019|2020|2021|2022|2023|2024)$","default":"2024","patches":[{"op":"replace","path":"/href","value":"archived-general-income-tax-benefit-package-{qval}/nunavut.html"}]}}'></div>
+  <!-- ON -->
+  <script type="application/json" id="pkg-on-seed">{ "href": "general-income-tax-benefit-package/ontario.html" }</script>
+  <div id="pkg-on-json" class="wb-inv" data-wb-jsonmanager='{"url":"#pkg-on-seed","name":"pkg_on","wait": true}'></div>
+  <div data-wb-urlmapping='{"pkgyr":{"action":"patch","source":"#pkg-on-json","match":"^(?:2016|2017|2018|2019|2020|2021|2022|2023|2024)$","default":"2024","patches":[{"op":"replace","path":"/href","value":"archived-general-income-tax-benefit-package-{qval}/ontario.html"}]}}'></div>
+  <!-- PE -->
+  <script type="application/json" id="pkg-pe-seed">{ "href": "general-income-tax-benefit-package/prince-edward-island.html" }</script>
+  <div id="pkg-pe-json" class="wb-inv" data-wb-jsonmanager='{"url":"#pkg-pe-seed","name":"pkg_pe","wait": true}'></div>
+  <div data-wb-urlmapping='{"pkgyr":{"action":"patch","source":"#pkg-pe-json","match":"^(?:2016|2017|2018|2019|2020|2021|2022|2023|2024)$","default":"2024","patches":[{"op":"replace","path":"/href","value":"archived-general-income-tax-benefit-package-{qval}/prince-edward-island.html"}]}}'></div>
+  <!-- QC -->
+  <script type="application/json" id="pkg-qc-seed">{ "href": "general-income-tax-benefit-package/quebec.html" }</script>
+  <div id="pkg-qc-json" class="wb-inv" data-wb-jsonmanager='{"url":"#pkg-qc-seed","name":"pkg_qc","wait": true}'></div>
+  <div data-wb-urlmapping='{"pkgyr":{"action":"patch","source":"#pkg-qc-json","match":"^(?:2016|2017|2018|2019|2020|2021|2022|2023|2024)$","default":"2024","patches":[{"op":"replace","path":"/href","value":"archived-general-income-tax-benefit-package-{qval}/quebec.html"}]}}'></div>
+  <!-- SK -->
+  <script type="application/json" id="pkg-sk-seed">{ "href": "general-income-tax-benefit-package/saskatchewan.html" }</script>
+  <div id="pkg-sk-json" class="wb-inv" data-wb-jsonmanager='{"url":"#pkg-sk-seed","name":"pkg_sk","wait": true}'></div>
+  <div data-wb-urlmapping='{"pkgyr":{"action":"patch","source":"#pkg-sk-json","match":"^(?:2016|2017|2018|2019|2020|2021|2022|2023|2024)$","default":"2024","patches":[{"op":"replace","path":"/href","value":"archived-general-income-tax-benefit-package-{qval}/saskatchewan.html"}]}}'></div>
+  <!-- YT -->
+  <script type="application/json" id="pkg-yt-seed">{ "href": "general-income-tax-benefit-package/yukon.html" }</script>
+  <div id="pkg-yt-json" class="wb-inv" data-wb-jsonmanager='{"url":"#pkg-yt-seed","name":"pkg_yt","wait": true}'></div>
+  <div data-wb-urlmapping='{"pkgyr":{"action":"patch","source":"#pkg-yt-json","match":"^(?:2016|2017|2018|2019|2020|2021|2022|2023|2024)$","default":"2024","patches":[{"op":"replace","path":"/href","value":"archived-general-income-tax-benefit-package-{qval}/yukon.html"}]}}'></div>
+  <!-- NR (non-residents) -->
+  <script type="application/json" id="pkg-nr-seed">{ "href": "general-income-tax-benefit-package/non-residents.html" }</script>
+  <div id="pkg-nr-json" class="wb-inv" data-wb-jsonmanager='{"url":"#pkg-nr-seed","name":"pkg_nr","wait": true}'></div>
+  <div data-wb-urlmapping='{"pkgyr":{"action":"patch","source":"#pkg-nr-json","match":"^(?:2016|2017|2018|2019|2020|2021|2022|2023|2024)$","default":"2024","patches":[{"op":"replace","path":"/href","value":"archived-general-income-tax-benefit-package-{qval}/non-residents.html"}]}}'></div>
 
-  <!-- 7) When ?prov=mb, reveal “for Manitoba”, show MB link, hide generic link -->
+  <!-- 5) Reveal province name fragment + link and hide generic when prov=xx -->
   <div data-wb-urlmapping='{
     "multiplequery": true,
     "prov": [
-      { "match": "^mb$", "action": "removeClass", "source": "#for-prov-mb",   "class": "wb-inv" },
-      { "match": "^mb$", "action": "removeClass", "source": "#pkg-link-mb",  "class": "wb-inv" },
-      { "match": "^mb$", "action": "addClass",    "source": "#pkg-link-generic", "class": "wb-inv" }
+      { "match": "^ab$", "action": "removeClass", "source": "#for-prov-ab", "class": "wb-inv" },
+      { "match": "^ab$", "action": "removeClass", "source": "#pkg-link-ab", "class": "wb-inv" },
+      { "match": "^ab$", "action": "addClass", "source": "#pkg-link-generic", "class": "wb-inv" },
+
+      { "match": "^bc$", "action": "removeClass", "source": "#for-prov-bc", "class": "wb-inv" },
+      { "match": "^bc$", "action": "removeClass", "source": "#pkg-link-bc", "class": "wb-inv" },
+      { "match": "^bc$", "action": "addClass", "source": "#pkg-link-generic", "class": "wb-inv" },
+
+      { "match": "^mb$", "action": "removeClass", "source": "#for-prov-mb", "class": "wb-inv" },
+      { "match": "^mb$", "action": "removeClass", "source": "#pkg-link-mb", "class": "wb-inv" },
+      { "match": "^mb$", "action": "addClass", "source": "#pkg-link-generic", "class": "wb-inv" },
+
+      { "match": "^nb$", "action": "removeClass", "source": "#for-prov-nb", "class": "wb-inv" },
+      { "match": "^nb$", "action": "removeClass", "source": "#pkg-link-nb", "class": "wb-inv" },
+      { "match": "^nb$", "action": "addClass", "source": "#pkg-link-generic", "class": "wb-inv" },
+
+      { "match": "^nl$", "action": "removeClass", "source": "#for-prov-nl", "class": "wb-inv" },
+      { "match": "^nl$", "action": "removeClass", "source": "#pkg-link-nl", "class": "wb-inv" },
+      { "match": "^nl$", "action": "addClass", "source": "#pkg-link-generic", "class": "wb-inv" },
+
+      { "match": "^ns$", "action": "removeClass", "source": "#for-prov-ns", "class": "wb-inv" },
+      { "match": "^ns$", "action": "removeClass", "source": "#pkg-link-ns", "class": "wb-inv" },
+      { "match": "^ns$", "action": "addClass", "source": "#pkg-link-generic", "class": "wb-inv" },
+
+      { "match": "^nt$", "action": "removeClass", "source": "#for-prov-nt", "class": "wb-inv" },
+      { "match": "^nt$", "action": "removeClass", "source": "#pkg-link-nt", "class": "wb-inv" },
+      { "match": "^nt$", "action": "addClass", "source": "#pkg-link-generic", "class": "wb-inv" },
+
+      { "match": "^nu$", "action": "removeClass", "source": "#for-prov-nu", "class": "wb-inv" },
+      { "match": "^nu$", "action": "removeClass", "source": "#pkg-link-nu", "class": "wb-inv" },
+      { "match": "^nu$", "action": "addClass", "source": "#pkg-link-generic", "class": "wb-inv" },
+
+      { "match": "^on$", "action": "removeClass", "source": "#for-prov-on", "class": "wb-inv" },
+      { "match": "^on$", "action": "removeClass", "source": "#pkg-link-on", "class": "wb-inv" },
+      { "match": "^on$", "action": "addClass", "source": "#pkg-link-generic", "class": "wb-inv" },
+
+      { "match": "^pe$", "action": "removeClass", "source": "#for-prov-pe", "class": "wb-inv" },
+      { "match": "^pe$", "action": "removeClass", "source": "#pkg-link-pe", "class": "wb-inv" },
+      { "match": "^pe$", "action": "addClass", "source": "#pkg-link-generic", "class": "wb-inv" },
+
+      { "match": "^qc$", "action": "removeClass", "source": "#for-prov-qc", "class": "wb-inv" },
+      { "match": "^qc$", "action": "removeClass", "source": "#pkg-link-qc", "class": "wb-inv" },
+      { "match": "^qc$", "action": "addClass", "source": "#pkg-link-generic", "class": "wb-inv" },
+
+      { "match": "^sk$", "action": "removeClass", "source": "#for-prov-sk", "class": "wb-inv" },
+      { "match": "^sk$", "action": "removeClass", "source": "#pkg-link-sk", "class": "wb-inv" },
+      { "match": "^sk$", "action": "addClass", "source": "#pkg-link-generic", "class": "wb-inv" },
+
+      { "match": "^yt$", "action": "removeClass", "source": "#for-prov-yt", "class": "wb-inv" },
+      { "match": "^yt$", "action": "removeClass", "source": "#pkg-link-yt", "class": "wb-inv" },
+      { "match": "^yt$", "action": "addClass", "source": "#pkg-link-generic", "class": "wb-inv" },
+
+      { "match": "^nr$", "action": "removeClass", "source": "#for-prov-nr", "class": "wb-inv" },
+      { "match": "^nr$", "action": "removeClass", "source": "#pkg-link-nr", "class": "wb-inv" },
+      { "match": "^nr$", "action": "addClass", "source": "#pkg-link-generic", "class": "wb-inv" }
     ]
   }'></div>
 </section>
