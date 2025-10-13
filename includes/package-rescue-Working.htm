@@ -1,0 +1,42 @@
+<section id="rescue-en">
+        <!-- 1) Seed (default when no query param is present) -->
+        <script type="application/json" id="pkg-seed">
+        { "year": "2024", "href": "general-income-tax-benefit-package.html" }
+        </script>
+
+        <!-- 2) Publish dataset and wait for patches BEFORE anything reads it -->
+        <div id="pkg-json" class="wb-inv"
+            data-wb-jsonmanager='{
+              "url": "#pkg-seed",
+              "name": "pkg",
+              "wait": true,
+              "debug": false
+            }'></div>
+
+        <!-- 3) Single URL-mapping using a unique key (pkgyr) with strict regex -->
+        <div data-wb-urlmapping='{
+          "pkgyr": {
+            "action": "patch",
+            "source": "#pkg-json",
+            "match": "^(?:2015|2016|2017|2018|2019|2020|2021|2022|2023)$",
+            "default": "2024",
+            "patches": [
+              { "op": "replace", "path": "/year", "value": "{qval}" },
+              { "op": "replace", "path": "/href", "value": "archived-general-income-tax-benefit-package-{qval}.html" }
+            ]
+          }
+        }'></div>
+        <p id="dnmc-rsc" class="wb-inv">To find other <span data-json-replace="#[pkg]/year"></span> forms or guides you may need, return to the <a 
+          data-wb-json='{"url":"#[pkg]/href","type":"attr","attr":"href"}'>
+          <span data-json-replace="#[pkg]/year"></span> Income tax package</a>.</p>
+        <div data-wb-urlmapping='{
+          "multiplequery": true,
+          "pkgyr": {
+            "action": "removeClass",
+            "source": "#dnmc-rsc",
+            "class": "wb-inv"
+          }
+        }'></div>
+</section> 
+<section id="rescue-fr">
+</section>
