@@ -277,30 +277,32 @@
     // Fill text
     $section.find("#rsc-year, #rsc-link-year").text(year);
 
-    // Build href (use absolute Canada.ca path per your spec)
-    var href = "https://www.canada.ca/en/revenue-agency/services/forms-publications/tax-packages-years/archived-general-income-tax-benefit-package-" + year + ".html";
+    // Build base once; then choose ".html" (year page) OR "/{slug}.html" (province page)
+    var base = "https://www.canada.ca/en/revenue-agency/services/forms-publications/tax-packages-years/archived-general-income-tax-benefit-package-" + year;
+    var href;
 
     if (prov && PROV[prov]) {
       var p = PROV[prov];
       $section.find("#rsc-for").removeClass("wb-inv");
       $section.find("#rsc-prov").text(p.name);
       $section.find("#rsc-link-prov").text("for " + p.name);
-      href += "/" + p.slug + ".html";
+      href = base + "/" + p.slug + ".html";
     } else {
       $section.find("#rsc-for").addClass("wb-inv");
       $section.find("#rsc-link-prov").text("");
+      href = base + ".html";
     }
 
     $section.find("#rsc-link").attr("href", href);
     $section.find("#dnmc-rsc").removeClass("wb-inv");
   }
 
-  // If the include is already present (e.g., reload), build now
+  // Run on DOM ready (covers reloads where include is already present)
   $(function () {
     buildSentence($(document));
   });
 
-  // When WET injects the include via data-ajax-replace, this jQuery event fires
+  // Run when WET injects the include via data-ajax-replace
   $(document).on(
     "wb-contentupdated",
     "section[data-ajax-replace*='includes/package-rescue.htm#rescue-en']",
@@ -310,8 +312,5 @@
   );
 })(jQuery);
 </script>
-
-
 </body>
-
 </html>
