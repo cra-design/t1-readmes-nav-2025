@@ -10,77 +10,68 @@
   </p>
 
   <script>
-    (function () {
-      // Wait until WET finished booting so DOM is stable
-      document.addEventListener("wb-ready.wb", function () {
-        try {
-          var url = new URL(window.location.href);
-          // Your pages sometimes use ?year= and ?pkgyr=; prefer pkgyr for the package link
-          var year = url.searchParams.get("pkgyr") || url.searchParams.get("year");
-          var prov = (url.searchParams.get("prov") || "").toLowerCase();
+    (function initRescueSentence() {
+      try {
+        var url = new URL(window.location.href);
+        // Prefer pkgyr; fall back to year if needed
+        var year = url.searchParams.get("pkgyr") || url.searchParams.get("year");
+        var prov = (url.searchParams.get("prov") || "").toLowerCase();
 
-          if (!year) return; // keep sentence hidden when no year
+        // If no year param, leave hidden and stop
+        if (!year) return;
 
-          // Province names + slugs for the URL path
-          var PROV = {
-            ab: { name: "Alberta",                   slug: "alberta" },
-            bc: { name: "British Columbia",          slug: "british-columbia" },
-            mb: { name: "Manitoba",                  slug: "manitoba" },
-            nb: { name: "New Brunswick",             slug: "new-brunswick" },
-            nl: { name: "Newfoundland and Labrador", slug: "newfoundland-and-labrador" },
-            ns: { name: "Nova Scotia",               slug: "nova-scotia" },
-            nt: { name: "Northwest Territories",     slug: "northwest-territories" },
-            nu: { name: "Nunavut",                   slug: "nunavut" },
-            on: { name: "Ontario",                   slug: "ontario" },
-            pe: { name: "Prince Edward Island",      slug: "prince-edward-island" },
-            qc: { name: "Quebec",                    slug: "quebec" },
-            sk: { name: "Saskatchewan",              slug: "saskatchewan" },
-            yt: { name: "Yukon",                     slug: "yukon" },
-            nr: { name: "non-residents",             slug: "non-residents" }
-          };
+        var PROV = {
+          ab: { name: "Alberta",                   slug: "alberta" },
+          bc: { name: "British Columbia",          slug: "british-columbia" },
+          mb: { name: "Manitoba",                  slug: "manitoba" },
+          nb: { name: "New Brunswick",             slug: "new-brunswick" },
+          nl: { name: "Newfoundland and Labrador", slug: "newfoundland-and-labrador" },
+          ns: { name: "Nova Scotia",               slug: "nova-scotia" },
+          nt: { name: "Northwest Territories",     slug: "northwest-territories" },
+          nu: { name: "Nunavut",                   slug: "nunavut" },
+          on: { name: "Ontario",                   slug: "ontario" },
+          pe: { name: "Prince Edward Island",      slug: "prince-edward-island" },
+          qc: { name: "Quebec",                    slug: "quebec" },
+          sk: { name: "Saskatchewan",              slug: "saskatchewan" },
+          yt: { name: "Yukon",                     slug: "yukon" },
+          nr: { name: "non-residents",             slug: "non-residents" }
+        };
 
-          // Elements
-          var wrap      = document.getElementById("dnmc-rsc");
-          var yearTxt   = document.getElementById("rsc-year");
-          var forWrap   = document.getElementById("rsc-for");
-          var provTxt   = document.getElementById("rsc-prov");
-          var link      = document.getElementById("rsc-link");
-          var linkYear  = document.getElementById("rsc-link-year");
-          var linkProv  = document.getElementById("rsc-link-prov");
+        var wrap     = document.getElementById("dnmc-rsc");
+        var yearTxt  = document.getElementById("rsc-year");
+        var forWrap  = document.getElementById("rsc-for");
+        var provTxt  = document.getElementById("rsc-prov");
+        var link     = document.getElementById("rsc-link");
+        var linkYear = document.getElementById("rsc-link-year");
+        var linkProv = document.getElementById("rsc-link-prov");
 
-          // Fill year text
-          yearTxt.textContent  = year;
-          linkYear.textContent = year;
+        // Fill year
+        yearTxt.textContent  = year;
+        linkYear.textContent = year;
 
-          // Default: year-level package link
-          var href = "archived-general-income-tax-benefit-package-" + year + ".html";
+        // Default href: year-level page
+        var href = "archived-general-income-tax-benefit-package-" + year + ".html";
 
-          // If prov provided and recognized, show province phrasing + point link to province page
-          if (prov && PROV[prov]) {
-            var p = PROV[prov];
-            // Show "for {Province}"
-            forWrap.classList.remove("wb-inv");
-            provTxt.textContent = p.name;
-            linkProv.textContent = "for " + p.name;
-
-            // Province-level href
-            href = "archived-general-income-tax-benefit-package-" + year + "/" + p.slug + ".html";
-          } else {
-            // No province: ensure the province bit stays hidden and link has no trailing "for …"
-            forWrap.classList.add("wb-inv");
-            linkProv.textContent = "";
-          }
-
-          // Apply final href
-          link.setAttribute("href", href);
-
-          // Finally, reveal the sentence
-          wrap.classList.remove("wb-inv");
-        } catch (e) {
-          // If anything goes wrong, keep it hidden to avoid broken UI
-          // console.warn("rescue sentence init failed", e);
+        // If prov present and recognized, include province
+        if (prov && PROV[prov]) {
+          var p = PROV[prov];
+          forWrap.classList.remove("wb-inv");
+          provTxt.textContent = p.name;
+          linkProv.textContent = "for " + p.name;
+          href = "archived-general-income-tax-benefit-package-" + year + "/" + p.slug + ".html";
+        } else {
+          // No province: keep “for …” hidden and clear trailing text
+          forWrap.classList.add("wb-inv");
+          linkProv.textContent = "";
         }
-      });
+
+        link.setAttribute("href", href);
+        // Unhide the whole sentence now that content is set
+        wrap.classList.remove("wb-inv");
+      } catch (e) {
+        // If DOM isn't ready yet, try once on DOMContentLoaded
+        document.addEventListener("DOMContentLoaded", initRescueSentence, { once: true });
+      }
     })();
   </script>
 </section>
