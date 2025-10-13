@@ -27,21 +27,7 @@
           }
         }'></div>
 
-  <!-- 4) URL-mapping for province -->
-  <div data-wb-urlmapping='{
-    "prov": {
-      "action": "patch",
-      "source": "#pkg-json",
-      "match": "^(ab|bc|mb|nb|nl|ns|nt|nu|on|pe|qc|sk|yt|nr)$",
-      "patches": [
-        { "op": "replace", "path": "/prov", "value": "{qval}" },
-        { "op": "replace", "path": "/href", "value": "archived-general-income-tax-benefit-package-#[pkg]/year#/{qval}.html" },
-        { "op": "replace", "path": "/provname", "value": "{qval}" }
-      ]
-    }
-  }'></div>
-
-  <!-- 5) Province name mapping -->
+  <!-- 4) Province code mapping -> dataset (code + english name) -->
   <script type="application/json" id="prov-map">
     {
       "ab": "Alberta",
@@ -60,26 +46,29 @@
       "nr": "non-residents"
     }
   </script>
+
   <div data-wb-jsonmanager='{
     "url": "#prov-map",
     "name": "provnames"
   }'></div>
+
   <div data-wb-urlmapping='{
     "prov": {
       "action": "patch",
       "source": "#pkg-json",
+      "match": "^(ab|bc|mb|nb|nl|ns|nt|nu|on|pe|qc|sk|yt|nr)$",
       "patches": [
+        { "op": "replace", "path": "/prov", "value": "{qval}" },
         { "op": "replace", "path": "/provname", "value": "#[provnames]/{qval}" }
       ]
     }
   }'></div>
 
-  <!-- 6) Sentence shown when pkgyr is present -->
-  <p id="dnmc-rsc" class="wb-inv">To find other <span data-json-replace="#[pkg]/year"></span> forms or guides you may need
-    <span data-wb-where='{"test": "#[pkg]/provname", "value": ""}'></span>
-    <span data-wb-where='{"test": "#[pkg]/provname", "value": "", "operator": "ne"}'>
-      for <span data-json-replace="#[pkg]/provname"></span>
-    </span>,
+  <!-- 5) The sentence. It always links to #[pkg]/href.
+         The “for {Province}” part is revealed when ?prov is present. -->
+  <p id="dnmc-rsc" class="wb-inv">
+    To find other <span data-json-replace="#[pkg]/year"></span> forms or guides you may need
+    <span id="for-prov" class="wb-inv"> for <span data-json-replace="#[pkg]/provname"></span></span>,
     return to the
     <a data-wb-json='{"url":"#[pkg]/href","type":"attr","attr":"href"}'>
       <span data-json-replace="#[pkg]/year"></span> Income tax package
@@ -87,7 +76,7 @@
     </a>.
   </p>
 
-  <!-- 7) Show sentence only if pkgyr is in URL -->
+  <!-- 6) Reveal the whole sentence when pkgyr exists -->
   <div data-wb-urlmapping='{
     "multiplequery": true,
     "pkgyr": {
@@ -96,6 +85,14 @@
       "class": "wb-inv"
     }
   }'></div>
-</section>
-<section id="rescue-fr">
+
+  <!-- 7) Reveal the “for {Province}” fragment when prov exists -->
+  <div data-wb-urlmapping='{
+    "multiplequery": true,
+    "prov": {
+      "action": "removeClass",
+      "source": "#for-prov",
+      "class": "wb-inv"
+    }
+  }'></div>
 </section>
