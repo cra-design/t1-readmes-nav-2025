@@ -1,82 +1,50 @@
 <section id="rescue-en">
-        <!-- 1) Seed (default when no query param is present) -->
-        <script type="application/json" id="pkg-seed">
-          { "year": "2024", "prov": "", "provname": "", "href": "general-income-tax-benefit-package.html" }
-        </script>
-
-        <!-- 2) Publish dataset and wait for patches BEFORE anything reads it -->
-        <div id="pkg-json" class="wb-inv"
-          data-wb-jsonmanager='{
-            "url": "#pkg-seed",
-            "name": "pkg",
-            "wait": true,
-            "debug": false
-          }'></div>
-
-        <!-- 3) URL-mapping for pkgyr (year) -->
-        <div data-wb-urlmapping='{
-          "pkgyr": {
-            "action": "patch",
-            "source": "#pkg-json",
-            "match": "^(?:2016|2017|2018|2019|2020|2021|2022|2023|2024)$",
-            "default": "2025",
-            "patches": [
-              { "op": "replace", "path": "/year", "value": "{qval}" },
-              { "op": "replace", "path": "/href", "value": "archived-general-income-tax-benefit-package-{qval}.html" }
-            ]
-          }
-        }'></div>
-
-  <!-- 4) Province code mapping -> dataset (code + english name) -->
-  <script type="application/json" id="prov-map">
-    {
-      "ab": "Alberta",
-      "bc": "British Columbia",
-      "mb": "Manitoba",
-      "nb": "New Brunswick",
-      "nl": "Newfoundland and Labrador",
-      "ns": "Nova Scotia",
-      "nt": "Northwest Territories",
-      "nu": "Nunavut",
-      "on": "Ontario",
-      "pe": "Prince Edward Island",
-      "qc": "Quebec",
-      "sk": "Saskatchewan",
-      "yt": "Yukon",
-      "nr": "non-residents"
-    }
+  <!-- 1) Seed (default when no query param is present) -->
+  <script type="application/json" id="pkg-seed">
+    { "year": "2024", "href": "general-income-tax-benefit-package.html" }
   </script>
 
-  <div data-wb-jsonmanager='{
-    "url": "#prov-map",
-    "name": "provnames"
-  }'></div>
+  <!-- 2) Publish dataset and wait BEFORE anything reads it -->
+  <div id="pkg-json" class="wb-inv"
+       data-wb-jsonmanager='{
+         "url": "#pkg-seed",
+         "name": "pkg",
+         "wait": true,
+         "debug": false
+       }'></div>
 
+  <!-- 3) URL-mapping for pkgyr (year) -->
   <div data-wb-urlmapping='{
-    "prov": {
+    "pkgyr": {
       "action": "patch",
       "source": "#pkg-json",
-      "match": "^(ab|bc|mb|nb|nl|ns|nt|nu|on|pe|qc|sk|yt|nr)$",
+      "match": "^(?:2016|2017|2018|2019|2020|2021|2022|2023|2024)$",
+      "default": "2024",
       "patches": [
-        { "op": "replace", "path": "/prov", "value": "{qval}" },
-        { "op": "replace", "path": "/provname", "value": "#[provnames]/{qval}" }
+        { "op": "replace", "path": "/year", "value": "{qval}" },
+        { "op": "replace", "path": "/href", "value": "archived-general-income-tax-benefit-package-{qval}.html" }
       ]
     }
   }'></div>
 
-  <!-- 5) The sentence. It always links to #[pkg]/href.
-         The “for {Province}” part is revealed when ?prov is present. -->
+  <!-- 4) Sentence (base text with both generic and Manitoba versions) -->
   <p id="dnmc-rsc" class="wb-inv">
     To find other <span data-json-replace="#[pkg]/year"></span> forms or guides you may need
-    <span id="for-prov" class="wb-inv"> for <span data-json-replace="#[pkg]/provname"></span></span>,
+    <span id="for-prov-mb" class="wb-inv"> for Manitoba</span>,
     return to the
-    <a data-wb-json='{"url":"#[pkg]/href","type":"attr","attr":"href"}'>
-      <span data-json-replace="#[pkg]/year"></span> Income tax package
-      <span data-json-replace="#[pkg]/provname"></span>
+    <!-- Generic year-level link -->
+    <a id="pkg-link-generic"
+       data-wb-json='{"url":"#[pkg]/href","type":"attr","attr":"href"}'>
+       <span data-json-replace="#[pkg]/year"></span> Income tax package
+    </a>
+    <!-- Manitoba-specific link (hidden until prov=mb) -->
+    <a id="pkg-link-mb" class="wb-inv"
+       data-wb-json='{"url":"#[pkg_mb]/href","type":"attr","attr":"href"}'>
+       <span data-json-replace="#[pkg]/year"></span> Income tax package for Manitoba
     </a>.
   </p>
 
-  <!-- 6) Reveal the whole sentence when pkgyr exists -->
+  <!-- 5) Show the sentence when pkgyr is present -->
   <div data-wb-urlmapping='{
     "multiplequery": true,
     "pkgyr": {
@@ -86,13 +54,59 @@
     }
   }'></div>
 
-  <!-- 7) Reveal the “for {Province}” fragment when prov exists -->
+  <!-- 6) Manitoba dataset seed -->
+  <script type="application/json" id="pkg-mb-seed">
+    { "href": "general-income-tax-benefit-package/manitoba.html" }
+  </script>
+  <div id="pkg-mb-json" class="wb-inv"
+       data-wb-jsonmanager='{
+         "url": "#pkg-mb-seed",
+         "name": "pkg_mb",
+         "wait": true
+       }'></div>
+
+  <!-- 7) Build Manitoba href from pkgyr -->
+  <div data-wb-urlmapping='{
+    "pkgyr": {
+      "action": "patch",
+      "source": "#pkg-mb-json",
+      "match": "^(?:2016|2017|2018|2019|2020|2021|2022|2023|2024)$",
+      "default": "2024",
+      "patches": [
+        { "op": "replace", "path": "/href", "value": "archived-general-income-tax-benefit-package-{qval}/manitoba.html" }
+      ]
+    }
+  }'></div>
+
+  <!-- 8) Reveal the Manitoba bits when prov=mb -->
+  <div data-wb-urlmapping='{
+    "multiplequery": true,
+    "prov": [
+      {
+        "match": "^mb$",
+        "action": "removeClass",
+        "source": "#for-prov-mb",
+        "class": "wb-inv"
+      },
+      {
+        "match": "^mb$",
+        "action": "removeClass",
+        "source": "#pkg-link-mb",
+        "class": "wb-inv"
+      }
+    ]
+  }'></div>
+
+  <!-- 9) Optionally hide the generic link when prov=mb -->
   <div data-wb-urlmapping='{
     "multiplequery": true,
     "prov": {
-      "action": "removeClass",
-      "source": "#for-prov",
+      "match": "^mb$",
+      "action": "addClass",
+      "source": "#pkg-link-generic",
       "class": "wb-inv"
     }
   }'></div>
+</section>
+<section id="rescue-fr">
 </section>
