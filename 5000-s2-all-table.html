@@ -245,6 +245,85 @@
     class="wb-init">&nbsp;</span>
   <script src="https://www.canada.ca/etc/designs/canada/wet-boew/js/theme.min.js"></script>
   <script src="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/m%C3%A9li-m%C3%A9lo/2024-09-kejimkujik.js"></script>
+  <script>
+(function () {
+  // Province names + URL slugs
+  var PROV = {
+    ab: { name: "Alberta",                   slug: "alberta" },
+    bc: { name: "British Columbia",          slug: "british-columbia" },
+    mb: { name: "Manitoba",                  slug: "manitoba" },
+    nb: { name: "New Brunswick",             slug: "new-brunswick" },
+    nl: { name: "Newfoundland and Labrador", slug: "newfoundland-and-labrador" },
+    ns: { name: "Nova Scotia",               slug: "nova-scotia" },
+    nt: { name: "Northwest Territories",     slug: "northwest-territories" },
+    nu: { name: "Nunavut",                   slug: "nunavut" },
+    on: { name: "Ontario",                   slug: "ontario" },
+    pe: { name: "Prince Edward Island",      slug: "prince-edward-island" },
+    qc: { name: "Quebec",                    slug: "quebec" },
+    sk: { name: "Saskatchewan",              slug: "saskatchewan" },
+    yt: { name: "Yukon",                     slug: "yukon" },
+    nr: { name: "non-residents",             slug: "non-residents" }
+  };
+
+  function buildAndShowSentence(root) {
+    // root is the <section data-ajax-replace="...#rescue-en"> host,
+    // or the document if already present
+    var container = (root && root.querySelector) ? root.querySelector("#rescue-en") : document.querySelector("#rescue-en");
+    if (!container) return;
+
+    var url  = new URL(window.location.href);
+    var year = url.searchParams.get("pkgyr") || url.searchParams.get("year");
+    var prov = (url.searchParams.get("prov") || "").toLowerCase();
+
+    var wrap     = container.querySelector("#dnmc-rsc");
+    var yearTxt  = container.querySelector("#rsc-year");
+    var forWrap  = container.querySelector("#rsc-for");
+    var provTxt  = container.querySelector("#rsc-prov");
+    var link     = container.querySelector("#rsc-link");
+    var linkYear = container.querySelector("#rsc-link-year");
+    var linkProv = container.querySelector("#rsc-link-prov");
+
+    if (!wrap || !link) return;
+    if (!year) return; // keep hidden if no year (per your rules)
+
+    // Fill year
+    if (yearTxt)  yearTxt.textContent  = year;
+    if (linkYear) linkYear.textContent = year;
+
+    // Default: year-level package link
+    var href = "archived-general-income-tax-benefit-package-" + year + ".html";
+
+    if (prov && PROV[prov]) {
+      var p = PROV[prov];
+      if (forWrap) forWrap.classList.remove("wb-inv");
+      if (provTxt)  provTxt.textContent  = p.name;
+      if (linkProv) linkProv.textContent = "for " + p.name;
+      href = "archived-general-income-tax-benefit-package-" + year + "/" + p.slug + ".html";
+    } else {
+      if (forWrap)  forWrap.classList.add("wb-inv");
+      if (linkProv) linkProv.textContent = "";
+    }
+
+    link.setAttribute("href", href);
+    // Reveal final sentence
+    wrap.classList.remove("wb-inv");
+  }
+
+  // 1) If the include is already in the DOM (e.g., after a reload), run now
+  buildAndShowSentence(document);
+
+  // 2) Also run when WET injects the include via data-ajax-replace
+  document.addEventListener("wb-contentupdated", function (evt) {
+    // This event fires on the element that received new content
+    var host = evt.target;
+    // Match your rescue include host <section data-ajax-replace="includes/package-rescue.htm#rescue-en">
+    if (host && host.matches && host.matches("section[data-ajax-replace*='includes/package-rescue.htm#rescue-en']")) {
+      buildAndShowSentence(host);
+    }
+  });
+})();
+</script>
+
 </body>
 
 </html>

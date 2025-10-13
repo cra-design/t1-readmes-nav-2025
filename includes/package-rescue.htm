@@ -1,5 +1,4 @@
 <section id="rescue-en">
-  <!-- Dynamic sentence (hidden until we have params) -->
   <p id="dnmc-rsc" class="wb-inv">
     To find other <span id="rsc-year"></span> forms or guides you may need
     <span id="rsc-for" class="wb-inv">for <span id="rsc-prov"></span></span>,
@@ -8,70 +7,4 @@
       <span id="rsc-link-year"></span> Income tax package <span id="rsc-link-prov"></span>
     </a>.
   </p>
-
-  <script>
-    (function initRescueSentence() {
-      try {
-        var url = new URL(window.location.href);
-        // Prefer pkgyr; fall back to year if needed
-        var year = url.searchParams.get("pkgyr") || url.searchParams.get("year");
-        var prov = (url.searchParams.get("prov") || "").toLowerCase();
-
-        // If no year param, leave hidden and stop
-        if (!year) return;
-
-        var PROV = {
-          ab: { name: "Alberta",                   slug: "alberta" },
-          bc: { name: "British Columbia",          slug: "british-columbia" },
-          mb: { name: "Manitoba",                  slug: "manitoba" },
-          nb: { name: "New Brunswick",             slug: "new-brunswick" },
-          nl: { name: "Newfoundland and Labrador", slug: "newfoundland-and-labrador" },
-          ns: { name: "Nova Scotia",               slug: "nova-scotia" },
-          nt: { name: "Northwest Territories",     slug: "northwest-territories" },
-          nu: { name: "Nunavut",                   slug: "nunavut" },
-          on: { name: "Ontario",                   slug: "ontario" },
-          pe: { name: "Prince Edward Island",      slug: "prince-edward-island" },
-          qc: { name: "Quebec",                    slug: "quebec" },
-          sk: { name: "Saskatchewan",              slug: "saskatchewan" },
-          yt: { name: "Yukon",                     slug: "yukon" },
-          nr: { name: "non-residents",             slug: "non-residents" }
-        };
-
-        var wrap     = document.getElementById("dnmc-rsc");
-        var yearTxt  = document.getElementById("rsc-year");
-        var forWrap  = document.getElementById("rsc-for");
-        var provTxt  = document.getElementById("rsc-prov");
-        var link     = document.getElementById("rsc-link");
-        var linkYear = document.getElementById("rsc-link-year");
-        var linkProv = document.getElementById("rsc-link-prov");
-
-        // Fill year
-        yearTxt.textContent  = year;
-        linkYear.textContent = year;
-
-        // Default href: year-level page
-        var href = "archived-general-income-tax-benefit-package-" + year + ".html";
-
-        // If prov present and recognized, include province
-        if (prov && PROV[prov]) {
-          var p = PROV[prov];
-          forWrap.classList.remove("wb-inv");
-          provTxt.textContent = p.name;
-          linkProv.textContent = "for " + p.name;
-          href = "archived-general-income-tax-benefit-package-" + year + "/" + p.slug + ".html";
-        } else {
-          // No province: keep “for …” hidden and clear trailing text
-          forWrap.classList.add("wb-inv");
-          linkProv.textContent = "";
-        }
-
-        link.setAttribute("href", href);
-        // Unhide the whole sentence now that content is set
-        wrap.classList.remove("wb-inv");
-      } catch (e) {
-        // If DOM isn't ready yet, try once on DOMContentLoaded
-        document.addEventListener("DOMContentLoaded", initRescueSentence, { once: true });
-      }
-    })();
-  </script>
 </section>
