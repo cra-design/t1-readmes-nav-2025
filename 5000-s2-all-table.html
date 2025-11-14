@@ -177,6 +177,65 @@
         <section data-ajax-replace="includes/package-rescue.htm#rescue-en"></section>
         <section data-ajax-replace="includes/t1-goc-archive-text.htm#archive-text-en"></section>
 
+          <h2>True query test</h2>    
+  <!--<div data-wb-jsonmanager='{
+		"url": "yr-prov.json#/years",
+		"name": "example1"
+	}'></div>
+   
+  <div data-wb-jsonmanager='{
+		"url": "yr-prov.json#/regions",
+		"name": "example2"
+	}'></div>
+    
+   <p>This is <span data-json-replace="#[example1]/2024">blank</span> year.</p> 
+  <p>for province of <span data-json-replace="#[example2]/ab/0">blank</span> year.</p>//-->
+    <div data-wb-urlmapping='{ "year" : { "action": "patch", "source": "#jm-patch1", "base": "/years",  "match": "^[0-9][0-9][0-9][0-9]$", "default": "0000"},  "region" : [{ "action": "patch", "source": "#jm-patch2", "base": "/regions",  "match": "^[a-z][a-z]$", "default": "ni"}], "multiplequery": true }'></div>
+    
+    <ul><li><a href="?year=2023&region=#prvs-yrs">2023 year</a></li>
+    <li><a href="?year=2022&region=#prvs-yrs">2022 year</a></li>
+    <li><a href="?year=2023&region=bc#prvs-yrs">British Columbia 2023</a></li>
+     <li><a href="?year=2019&region=nb#prvs-yrs">New Brunswick 2019</a></li>
+  </ul>
+      <h2 id="prvs-yrs">Available prior year versions</h2>
+        <section data-ajax-replace="https://cra-design.github.io/t1-readmes-nav-2025/includes/prior-year-intro.htm#prior-intro-en"></section>
+        <section data-ajax-replace="5000-s2-table-e.htm"></section>
+        <section data-ajax-replace="https://cra-design.github.io/t1-readmes-nav-2025/includes/clear-filter-button.htm#filter-button-en"></section> 
+    
+    
+  <div id="jm-patch1" data-wb-jsonmanager='{
+		"url": "yr-prov.json", "wait": true,
+		"name": "json-patch1"}'></div>
+     <div id="jm-patch2" data-wb-jsonmanager='{
+		"url": "yr-prov.json", "wait": true,
+		"name": "json-patch2"}'></div>
+   
+    <p class="lst-spcd" data-wb-json='[{
+		"url": "#[json-patch1]/years",
+		"mapping": [{ "selector": ".text-query", "value": "/@value", "placeholder": "[[years]]" }]
+	}, {
+		"url": "#[json-patch1]/years",
+		"mapping": [{ "selector": "a", "value": "/@value", "attr": "href", "placeholder": "[[years]]" }], "streamline": true
+	}, {
+		"url": "#[json-patch1]/years",
+		"mapping": [{ "selector": ".url-query", "value": "/@value", "placeholder": "[[years]]" }], "streamline": true
+	},{
+		"url": "#[json-patch2]/regions/0",
+		"mapping": [{ "selector": ".text-query", "value": "/@value", "placeholder": "[[regions]]" }], "streamline": true
+	}, {
+		"url": "#[json-patch2]/regions/2",
+		"mapping": [{ "selector": "a", "value": "/@value", "attr":  "href", "placeholder": "[[regions]]" }], "streamline": true
+	}, {
+		"url": "#[json-patch2]/regions/0",
+		"mapping": [{ "selector": ".url-query", "value": "/@value", "placeholder": "[[regions]]" }], "streamline": true
+	}]'>
+	<template>
+        <span class="text-query">To find other [[years]] forms or guides you may need [[regions]], return to the </span><a  class="url-query" href="https://www.canada.ca/en/revenue-agency/services/forms-publications/tax-packages-years/archived-general-income-tax-benefit-package-[[years]][[regions]].html">[[years]] Income tax package[[regions]]</a>.
+	</template>
+    </p>  
+    
+<!--<p>To find other [[year]] forms or guides you may need [[region]], return to the <a  href="https://www.canada.ca/en/revenue-agency/services/forms-publications/tax-packages-years/archived-general-income-tax-benefit-package-[[year]][[region]].html">[[year]] Income tax package [[region]]</a>.</p>//-->
+
         <section class="pagedetails">
           <h2 class="wb-inv">Page details</h2>
           <div class="row">
