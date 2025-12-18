@@ -170,39 +170,27 @@
           data-ajax-replace="https://www.canada.ca/content/canadasite/en/revenue-agency/services/forms-publications/forms/t5007/instructions.html#instr">
         </section>
         <!--Prior year forms -->
-        <h2 id="prvs-yrs">Available prior year versions</h2>
-        <section data-ajax-replace="includes/prior-year-intro.htm#prior-intro-en"></section>
-        <section data-ajax-replace="forms-table-script/results/5000-s2-table-e.htm"></section>
-        <section data-ajax-replace="includes/clear-filter-button.htm#filter-button-en"></section>
-        <section data-ajax-replace="includes/package-rescue.htm#rescue-en"></section>
-        <section data-ajax-replace="includes/t1-goc-archive-text.htm#archive-text-en"></section>
-
-          <h2>True query test</h2>    
-  <!--<div data-wb-jsonmanager='{
-		"url": "yr-prov.json#/years",
-		"name": "example1"
-	}'></div>
-   
-  <div data-wb-jsonmanager='{
-		"url": "yr-prov.json#/regions",
-		"name": "example2"
-	}'></div>
-    
-   <p>This is <span data-json-replace="#[example1]/2024">blank</span> year.</p> 
-  <p>for province of <span data-json-replace="#[example2]/ab/0">blank</span> year.</p>//-->
-    <div data-wb-urlmapping='{ "year" : { "action": "patch", "source": "#jm-patch1", "base": "/years",  "match": "^[0-9][0-9][0-9][0-9]$", "default": "0000"},  "region" : [{ "action": "patch", "source": "#jm-patch2", "base": "/regions",  "match": "^[a-z][a-z]$", "default": "ni"}], "multiplequery": true }'></div>
-    
-    <ul><li><a href="?year=2023&region=#prvs-yrs">2023 year</a></li>
-    <li><a href="?year=2022&region=#prvs-yrs">2022 year</a></li>
-    <li><a href="?year=2023&region=bc#prvs-yrs">British Columbia 2023</a></li>
-     <li><a href="?year=2019&region=nb#prvs-yrs">New Brunswick 2019</a></li>
-  </ul>
+      <div data-wb-urlmapping='{
+          "year": {
+            "action": "patch",
+            "source": "#jm-patch1",
+            "base": "/years",
+            "match": "^[0-9][0-9][0-9][0-9]$",
+            "default": "0000"
+          },
+          "region": [{
+            "action": "patch",
+            "source": "#jm-patch2",
+            "base": "/regions",
+            "match": "^[a-z][a-z]$",
+            "default": "ni"
+          }],
+          "multiplequery": true
+        }'></div>
       <h2 id="prvs-yrs">Available prior year versions</h2>
-        <section data-ajax-replace="https://cra-design.github.io/t1-readmes-nav-2025/includes/prior-year-intro.htm#prior-intro-en"></section>
-        <section data-ajax-replace="5000-s2-table-e.htm"></section>
-        <section data-ajax-replace="https://cra-design.github.io/t1-readmes-nav-2025/includes/clear-filter-button.htm#filter-button-en"></section> 
-    
-    
+      <section data-ajax-replace="includes/prior-year-intro.htm#prior-intro-en"></section>
+      <section data-ajax-replace="forms-table-script/results/5000-s2-table-e.htm"></section>
+      <section data-ajax-replace="includes/clear-filter-button.htm#filter-button-en"></section>
   <div id="jm-patch1" data-wb-jsonmanager='{
 		"url": "yr-prov.json", "wait": true,
 		"name": "json-patch1"}'></div>
@@ -304,72 +292,5 @@
     class="wb-init">&nbsp;</span>
   <script src="https://www.canada.ca/etc/designs/canada/wet-boew/js/theme.min.js"></script>
   <script src="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/m%C3%A9li-m%C3%A9lo/2024-09-kejimkujik.js"></script>
-<script>
-(function ($) {
-  var PROV = {
-    ab:{name:" Alberta",slug:"alberta"},
-    bc:{name:" British Columbia",slug:"british-columbia"},
-    mb:{name:" Manitoba",slug:"manitoba"},
-    nb:{name:" New Brunswick",slug:"new-brunswick"},
-    nl:{name:" Newfoundland and Labrador",slug:"newfoundland-labrador"},
-    ns:{name:" Nova Scotia",slug:"nova-scotia"},
-    nt:{name:" Northwest Territories",slug:"northwest-territories"},
-    nu:{name:" Nunavut",slug:"nunavut"},
-    on:{name:" Ontario",slug:"ontario"},
-    pe:{name:" Prince Edward Island",slug:"prince-edward-island"},
-    qc:{name:" Quebec",slug:"quebec"},
-    sk:{name:" Saskatchewan",slug:"saskatchewan"},
-    yt:{name:" Yukon",slug:"yukon"},
-    nr:{name:" non-residents",slug:"non-residents"}
-  };
-
-  function buildSentence($scope) {
-    var $section = $scope.find("#rescue-en");
-    if (!$section.length) $section = $("#rescue-en");
-    if (!$section.length) return;
-
-    var url  = new URL(window.location.href);
-    var year = url.searchParams.get("pkgyr") || url.searchParams.get("year");
-    var prov = (url.searchParams.get("prov") || "").toLowerCase();
-    if (!year) return; // keep hidden if no year
-
-    // Fill text
-    $section.find("#rsc-year, #rsc-link-year").text(year);
-
-    // Build base once; then choose ".html" (year page) OR "/{slug}.html" (province page)
-    var base = "https://www.canada.ca/en/revenue-agency/services/forms-publications/tax-packages-years/archived-general-income-tax-benefit-package-" + year;
-    var href;
-
-    if (prov && PROV[prov]) {
-      var p = PROV[prov];
-      $section.find("#rsc-for").removeClass("wb-inv");
-      $section.find("#rsc-prov").text(p.name);
-      $section.find("#rsc-link-prov").text(" for" + p.name);
-      href = base + "/" + p.slug + ".html";
-    } else {
-      $section.find("#rsc-for").addClass("wb-inv");
-      $section.find("#rsc-link-prov").text("");
-      href = base + ".html";
-    }
-
-    $section.find("#rsc-link").attr("href", href);
-    $section.find("#dnmc-rsc").removeClass("wb-inv");
-  }
-
-  // Run on DOM ready (covers reloads where include is already present)
-  $(function () {
-    buildSentence($(document));
-  });
-
-  // Run when WET injects the include via data-ajax-replace
-  $(document).on(
-    "wb-contentupdated",
-    "section[data-ajax-replace*='includes/package-rescue.htm#rescue-en']",
-    function () {
-      buildSentence($(this));
-    }
-  );
-})(jQuery);
-</script>
 </body>
 </html>
