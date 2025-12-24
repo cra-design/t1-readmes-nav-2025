@@ -4,9 +4,11 @@
 <head prefix="og: http://ogp.me/ns#">
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta charset="utf-8"/>
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
 <title>5000-S2 Schedule 2</title>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<!-- Meta data -->
 <meta name="author" content="Canada Revenue Agency"/>
 <meta name="dcterms.title" content="5000-S2 Schedule 2"/>
 <meta name="dcterms.creator" content="Canada Revenue Agency"/>
@@ -16,6 +18,10 @@
 <meta name="dcterms.spatial" content="Canada"/>
 <meta name="robots" content="index, follow"/>
 <meta name="dcterms.identifier" content="Canada_Revenue_Agency"/>
+<!-- Meta data -->
+<!-- Load closure template scripts -->
+<!--<script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_43/cdts/compiled/soyutils.js"></script>-->
+<script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v5_0_2/cdts/compiled/wet-en.js"></script>
 <link rel="stylesheet" href="https://www.canada.ca/etc/designs/canada/wet-boew/css/theme.min.css"/>
 <link href="https://www.canada.ca/etc/designs/canada/wet-boew/assets/favicon.ico" rel="icon" type="image/x-icon"/>
 <link rel="stylesheet" href="https://www.canada.ca/etc/designs/canada/wet-boew/css/wet-boew.min.css"/>
@@ -24,11 +30,15 @@
 <link rel="stylesheet" href="https://www.canada.ca/etc/designs/canada/wet-boew/css/noscript.min.css"/>
 </noscript>
 <link rel="stylesheet" href="https://www.canada.ca/etc/designs/canada/wet-boew/méli-mélo/2024-09-kejimkujik.min.css"/>
+  <link href="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v5_0_2/wet-boew/assets/favicon.ico" rel="shortcut icon">
 </head>
 
-
 <body vocab="http://schema.org/" typeof="WebPage" resource="#wb-webpage">
-
+  <noscript>
+    <!-- Write closure fall-back static file -->
+    <!-- /ROOT/etc/designs/canada/cdts/gcweb/v4_0_43/cdts/static/refTop.html -->
+    <!--#include virtual="/app/cls/WET/gcweb/v4_0_43/cdts/static/refTop.html" -->
+  </noscript>
   <div class="col-xs-offset-6 col-xs-6 col-md-offset-0 col-md-4">
     <section id="wb-so">
       <h2 class="wb-inv">Sign in</h2>
@@ -199,16 +209,31 @@
   </p>
   <section data-ajax-replace="includes/t1-goc-archive-text.htm#archive-text-en"></section>
 
-  <section class="pagedetails">
-    <h2 class="wb-inv">Page details</h2>
-    <div class="row">
-      <div class="col-sm-8 col-md-9 col-lg-9">
-        <div class="wb-disable-allow" data-ajax-replace="https://www.canada.ca/etc/designs/canada/wet-boew/assets/feedback/page-feedback-en.html"> </div>
-      </div>
+        <section class="pagedetails">
+          <h2 class="wb-inv">Page details</h2>
+          <div class="row">
+            <div class="col-sm-8 col-md-9 col-lg-9">
+              <div
+                data-ajax-replace="https://www.canada.ca/etc/designs/canada/wet-boew/assets/feedback/page-feedback-en.html"
+                class="wb-disable-allow" data-feedback-section="page title" data-feedback-theme="Taxes"
+                data-feedback-institution="."></div>
+            </div>
+          </div>
+          <dl id="wb-dtmd">
+            <dt>Date modified:</dt>
+            <dd>
+        <time property="dateModified">2025-##-##</time>
+            </dd>
+          </dl>
+        </section>
+        <div id="def-preFooter">
+          <!-- Write closure fall-back static file -->
+          <!-- /ROOT/etc/designs/canada/cdts/gcweb/v4_0_43/cdts/static/preFooter-en.html -->
+          <!--#include virtual="/app/cls/WET/gcweb/v4_0_43/cdts/static/preFooter-en.html" -->
+        </div>
     </div>
-    <gcds-date-modified> 2025-12-22 </gcds-date-modified>
-  </section>
-</main>
+  </div>
+
   <!-- Write closure template -->
   <script>
     var defPreFooter = document.getElementById("def-preFooter");
@@ -243,8 +268,8 @@
         }]
       }
     });
-</script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script> 
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> 
 <script src="https://www.canada.ca/etc/designs/canada/wet-boew/js/ep-pp.min.js"></script> 
 <script src="https://www.canada.ca/etc/designs/canada/wet-boew/js/wet-boew.min.js"></script> 
 <script src="https://www.canada.ca/etc/designs/canada/wet-boew/js/theme.min.js"></script> 
