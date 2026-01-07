@@ -20,23 +20,17 @@
   <!-- Meta data -->
   <!-- Load closure template scripts -->
   <!--<script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_43/cdts/compiled/soyutils.js"></script>-->
-  <script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v5_0_2/cdts/compiled/wet-en.js"></script>
-  <link rel="stylesheet" href="https://www.canada.ca/etc/designs/canada/wet-boew/css/theme.min.css">
-  <link rel="stylesheet"
-    href="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/m%C3%A9li-m%C3%A9lo/2024-09-kejimkujik.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    <link rel="stylesheet" href="https://www.canada.ca/etc/designs/canada/wet-boew/css/theme.min.css">
+  <noscript><link rel="stylesheet" href="/etc/designs/canada/wet-boew/css/noscript.min.css"/></noscript>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
     integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
-  <link href="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v5_0_2/wet-boew/assets/favicon.ico"
+  <script blocking="render" src="/etc/designs/canada/wet-boew/js/gcdsloader.min.js"></script>
+  <link href="/etc/designs/canada/wet-boew/assets/favicon.ico"
     rel="shortcut icon">
 </head>
 
 <body vocab="http://schema.org/" typeof="WebPage" resource="#wb-webpage">
-  <noscript>
-    <!-- Write closure fall-back static file -->
-    <!-- /ROOT/etc/designs/canada/cdts/gcweb/v4_0_43/cdts/static/refTop.html -->
-    <!--#include virtual="/app/cls/WET/gcweb/v4_0_43/cdts/static/refTop.html" -->
-  </noscript>
-  <div class="col-xs-offset-6 col-xs-6 col-md-offset-0 col-md-4">
+<div class="col-xs-offset-6 col-xs-6 col-md-offset-0 col-md-4">
     <section id="wb-so">
       <h2 class="wb-inv">Sign in</h2>
       <a class="btn btn-primary"
@@ -44,45 +38,6 @@
           class="visible-xs">Sign in</span><span class="hidden-xs">CRA sign in</span></a>
     </section>
   </div>
-  <div id="def-top">
-    <!-- Write closure fall-back static file -->
-    <!-- /ROOT/etc/designs/canada/cdts/gcweb/v4_0_43/cdts/static/top-en.html -->
-    <!--#include virtual="/app/cls/WET/gcweb/v4_0_43/cdts/static/top-en.html" -->
-  </div>
-  <!-- Write closure template -->
-  <script>
-    var defTop = document.getElementById("def-top");
-    defTop.outerHTML = wet.builder.top({
-      lngLinks: [{
-        lang: "fr",
-        href: "#",
-        text: "Français"
-      }],
-      customSearch: [{
-        action: "www.canada.ca/en/revenue-agency/search.html",
-        placeholder: "CRA",
-        method: "get",
-      }],
-      signIn: [{
-        href: "https://www.canada.ca/en/revenue-agency/services/e-services/cra-login-services.html"
-      }],
-      breadcrumbs: [{
-        title: "Canada.ca",
-        href: "https://www.canada.ca/en.html"
-      }, {
-        title: "Canada Revenue Agency (CRA)",
-        href: "https://www.canada.ca/en/revenue-agency.html"
-      }, {
-        title: "Forms and publications - CRA",
-        href: "https://www.canada.ca/en/revenue-agency/services/forms-publications.html"
-      }, {
-        title: "Canada Revenue Agency forms listed by number",
-        href: "https://www.canada.ca/en/revenue-agency/services/forms-publications/forms.html"
-      }]
-    });
-  </script>
-
-  <!-- Write closure template -->
   <div class="container">
     <div class="row">
       <main property="mainContentOfPage" resource="#wb-main" typeof="WebPageElement" class="container">
@@ -231,10 +186,10 @@
     }
 </script>
   <div id="jm-patch1" data-wb-jsonmanager='{
-		"url": "yr-prov.json", "wait": true,
+		"url": "#yr-prov-json", "wait": true,
 		"name": "json-patch1"}'></div>
   <div id="jm-patch2" data-wb-jsonmanager='{
-		"url": "yr-prov.json", "wait": true,
+		"url": "#yr-prov-json", "wait": true,
 		"name": "json-patch2"}'></div>
   <p class="lst-spcd" data-wb-json='[{
 		"url": "#[json-patch1]/years",
@@ -285,57 +240,15 @@
             </dd>
           </dl>
         </section>
-        <div id="def-preFooter">
-          <!-- Write closure fall-back static file -->
-          <!-- /ROOT/etc/designs/canada/cdts/gcweb/v4_0_43/cdts/static/preFooter-en.html -->
-          <!--#include virtual="/app/cls/WET/gcweb/v4_0_43/cdts/static/preFooter-en.html" -->
-        </div>
-      </main>
+</main>
     </div>
   </div>
-
-  <!-- Write closure template -->
-  <script>
-    var defPreFooter = document.getElementById("def-preFooter");
-    defPreFooter.outerHTML = wet.builder.preFooter({
-      showShare: false,
-      pagedetails: false
-    });
-  </script>
-  <div id="def-footer">
-    <!-- Write closure fall-back static file -->
-    <!-- /ROOT/app/cls/WET/gcweb/v4_0_43/cdts/static/footer-en.html -->
-    <!--#include virtual="/app/cls/WET/gcweb/v4_0_43/cdts/static/footer-en.html" -->
-  </div>
-  <!-- Write closure template -->
-  <script>
-    var defFooter = document.getElementById("def-footer");
-    defFooter.outerHTML = wet.builder.footer({
-      privacyLink: {
-        href: "https://www.canada.ca/en/revenue-agency/corporate/privacy-notice.html"
-      },
-      contextualFooter: {
-        title: "Canada Revenue Agency (CRA)",
-        links: [{
-          text: "Contact the CRA",
-          href: "https://www.canada.ca/en/revenue-agency/corporate/contact-information.html"
-        }, {
-          text: "About the CRA",
-          href: "https://www.canada.ca/en/revenue-agency/corporate/about-canada-revenue-agency-cra.html"
-        }, {
-          text: "Compliance and enforcement",
-          href: "https://www.canada.ca/en/revenue-agency/programs/about-canada-revenue-agency-cra/compliance.html"
-        }]
-      }
-    });
-  </script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"
     integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
   <script src="https://www.canada.ca/etc/designs/canada/wet-boew/js/ep-pp.min.js"></script>
-  <script src="https://www.canada.ca/etc/designs/canada/wet-boew/js/wet-boew.min.js"></script><span id="wb-rsz"
-    class="wb-init">&nbsp;</span>
+  <script src="https://www.canada.ca/etc/designs/canada/wet-boew/js/wet-boew.min.js"></script>
   <script src="https://www.canada.ca/etc/designs/canada/wet-boew/js/theme.min.js"></script>
-  <script src="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/m%C3%A9li-m%C3%A9lo/2024-09-kejimkujik.js"></script>
 </body>
 
 </html>
+
